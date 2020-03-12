@@ -11,7 +11,7 @@ const Footer = () => (
         Privacy Policy
       </a>
     </div>
-    <div class="page-footer__social-block">
+    <div className="page-footer__social-block">
       <a href="#" className="page-footer__link page-link">
         Blog
       </a>
