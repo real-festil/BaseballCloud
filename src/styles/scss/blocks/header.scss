@@ -1,0 +1,131 @@
+$block: ".page-header";
+
+#{$block} {
+  grid-area: header;
+  grid-column-end: span 2;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+
+  .main-nav {
+
+    &__list {
+      display: flex;
+      align-items: center;
+    }
+
+    &__item {
+      margin-right: 20px;
+
+      &:nth-of-type(2) {
+        margin-right: 30px;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &--user {
+        position: relative;
+        padding-left: 32px;
+      }
+    }
+
+    &__link {
+      display: block;
+      position: relative;
+
+      &:hover {
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -19px;
+          left: -5px;
+          right: -5px;
+          height: 4px;
+          background-color: rgba(120,139,153,.4);
+        }
+      }
+
+      &--active {
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: -19px;
+          left: -5px;
+          right: -5px;
+          height: 4px;
+          background-color: #667784;
+        }
+      }
+    }
+
+    &__user-pic {
+      position: absolute;
+      left: 0;
+      top: 3px;
+    }
+
+    &__user-control {
+      display: block;
+      position: relative;
+      padding: 7px 19px 10px 18px;
+
+      &:hover {
+        background-color: #eeeeee;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 45%;
+        right: 5px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #667784;
+      }
+    }
+
+    &__dropdown {
+      position: absolute;
+      width: 178px;
+      top: 100%;
+      left: inherit;
+      margin-top: 12px;
+      padding: 8px 0;
+      border-radius: 5px;
+      background-color: #ffffff;
+      box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .15);
+      border: solid 1px #ebebeb;
+      z-index: 100;
+      right: -5px;
+
+      &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -8px;
+        right: 25px;
+        z-index: 2;
+        border-style: solid;
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent #ffffff transparent;
+      }
+
+      &-link {
+        display: block;
+        padding: 8px 16px;
+        background: #fff;
+        line-height: 1;
+
+        &:hover {
+          background-color: rgba(72, 187, 255, 0.1);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+$block: ".modal-signIn";
+
+#{$block} {
+  background: hsla(0, 0%, 100%, .8);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 450px;
+
+  &__header {
+    margin-bottom: 48px;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: #667784;
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    text-align: center;
+  }
+
+  &__help-link {
+    text-align: right;
+    margin-bottom: 15px;
+  }
+
+  &__signUp-link {
+    text-decoration: underline;
+    padding-left: 3px;
+    color: #48bbff;
+    cursor: pointer;
+  }
+}

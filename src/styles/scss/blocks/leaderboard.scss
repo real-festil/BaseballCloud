@@ -1,0 +1,246 @@
+$block: ".leaderboards";
+
+#{$block} {
+  grid-area: main;
+  background: #fff;
+  overflow: auto;
+  width: 100%;
+  padding: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+
+  &__header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__filter-list {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__filter,
+  &__sort {
+    position: relative;
+    margin-left: 15px;
+    display: inline-flex;
+    align-items: center;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    #{$block}__filter-icon,
+    #{$block}__sort-icon {
+      display: flex;
+      padding: 14px 0;
+      margin-left: -13px;
+      cursor: pointer;
+    }
+  }
+
+  &__filter-input {
+    display: block;
+    padding: 5px 5px 7px 0;
+    min-height: 38px;
+    transition: width .5s;
+    color: #48bbff;
+
+    &--school,
+    &--team {
+      width: 66px;
+
+      &:focus {
+        width: 180px;
+      }
+    }
+
+    &--age {
+      width: 47px;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      &:focus {
+        width: 80px;
+      }
+    }
+
+    &::placeholder {
+      font-family: 'Lato';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.25;
+      color: inherit;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    &:active,
+    &:focus {
+      border-bottom: 1px solid #48bbff;
+      outline: none;
+      color: #788b99;
+      padding-bottom: 6px;
+    }
+  }
+
+  &__filter-dropdown,
+  &__sort-dropdown {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__filter-value,
+  &__sort-value {
+    padding-right: 20px;
+    color: #48bbff;
+  }
+
+  &__table-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 23px;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+  }
+
+  &__tab-btn {
+    padding: 8px;
+    margin: 8px;
+    border: 2px solid #788b99;
+    border-radius: 40px;
+    font-size: 0.875rem;
+    line-height: 1.1;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      color: #788b99;
+      background: rgba(120, 139, 153, .4);
+    }
+
+    &--active {
+      background: #788b99;
+      color: #fff;
+    }
+  }
+
+  &__sort {
+    margin-right: 30px;
+  }
+
+  &__table-content {
+    padding: 16px;
+    margin-bottom: 21px;
+  }
+
+  &__table-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    background: #fff;
+    min-height: 44px;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  &__table-col {
+
+    &--rank {
+      width: 6.5%;
+      flex: 1 0 6.5%;
+      min-width: 0;
+    }
+
+    &--batter {
+      width: 14%;
+      flex: 1 0 14%;
+      min-width: 0;
+    }
+
+    &--age {
+      width: 5%;
+      flex: 1 0 5%;
+      min-width: 0;
+    }
+
+    &--school {
+      width: 14%;
+      flex: 1 0 14%;
+      min-width: 0;
+    }
+
+    &--teams {
+      width: 14.5%;
+      flex: 1 0 14.5%;
+      min-width: 0;
+    }
+
+    &--velocity {
+      width: 14.5%;
+      flex: 1 0 14.5%;
+      min-width: 0;
+    }
+
+    &--angle {
+      width: 14.5%;
+      flex: 1 0 14.5%;
+      min-width: 0;
+    }
+
+    &--distance {
+      width: 10%;
+      flex: 1 0 10%;
+      min-width: 0;
+    }
+
+    &--favorite {
+      width: 5%;
+      flex: 1 0 5%;
+      min-width: 0;
+    }
+  }
+
+  &__table-row {
+    min-height: 44px;
+    margin-bottom: 4px;
+    display: flex;
+    width: 100%;
+    flex: 0 0 100%;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #f7f8f9;
+    color: #414f5a;
+
+    &--rank {
+      padding-left: 5px;
+    }
+  }
+
+  &__blue-icon {
+    color: #48bbff;
+  }
+}

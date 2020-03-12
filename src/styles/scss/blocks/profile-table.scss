@@ -1,0 +1,159 @@
+$block: ".profile-table";
+
+#{$block} {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+
+  &__toggle-wrap {
+    display: flex;
+  }
+
+  &__toggle {
+    padding: 8px;
+    margin: 8px;
+    border: 2px solid #788b99;
+    border-radius: 40px;
+    font-size: 0.875rem;
+    line-height: 1.1;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      color: #788b99;
+      background: rgba(120,139,153,.4);
+    }
+
+    &--active {
+      background: #788b99;
+      color: #fff;
+    }
+  }
+
+  &__players-table {
+    font-size: 1rem;
+    color: #333333;
+  }
+
+  &__names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 16px;
+    color: #414f5a;
+  }
+
+  &__current-player,
+  &__select-player {
+    display: flex;
+    align-items: center;
+  }
+
+  &__current-img,
+  &__select-img {
+    margin-right: 8px;
+    display: block;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  &__search-wrap {
+    display: flex;
+  }
+
+  &__search {
+    display: block;
+    padding: 5px 5px 7px 0;
+    min-height: 38px;
+    width: 150px;
+    color: #788b99;
+    -webkit-transition: width .5s;
+    transition: width .5s;
+
+    &::placeholder {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #48bbff;
+    -webkit-font-smoothing: antialiased;
+    }
+
+    &:active,
+    &:focus {
+      border-bottom: 1px solid #48bbff;
+      outline: none;
+      color: #788b99;
+      padding-bottom: 6px;
+    }
+
+    &:focus {
+      width: 180px;
+    }
+  }
+
+  &__search-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  &__info-table {
+    margin-bottom: 6px;
+  }
+
+  &__info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 44px;
+    
+    &:not(:last-of-type) {
+      margin-bottom: 6px;
+    }
+  }
+
+  &__sorting {
+    display: flex;
+    margin-bottom: 21px;
+    position: relative;
+  }
+
+  &__sorting-btn {
+    color: #48bbff;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__sorting-icon {
+    display: flex;
+    margin-left: 6px;
+    margin-top: 6px;
+    width: 16px;
+    height: 9px;
+  }
+
+  &__values-table {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #414f5a;;
+  }
+
+  &__values-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 4px;
+    min-height: 44px;
+    border-radius: 4px;
+    background-color: #f7f8f9;
+    align-items: center;
+  }
+
+
+}

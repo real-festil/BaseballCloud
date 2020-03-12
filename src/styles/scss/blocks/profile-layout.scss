@@ -1,0 +1,10 @@
+$block: ".profile-container";
+
+#{$block} {
+  grid-area: main;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

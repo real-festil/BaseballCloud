@@ -1,0 +1,12 @@
+$block: ".login-page";
+
+#{$block} {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: auto;
+  background: url("../img/login-bg.png") no-repeat center;
+  background-size: cover;
+}

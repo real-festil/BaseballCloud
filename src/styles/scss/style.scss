@@ -1,0 +1,104 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  color: #667784;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: #667784;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25;
+  outline: none;
+  background-color: transparent;
+  border-style: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+input {
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+  font-size: 1em;
+  margin: 0;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  color: #667784;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "main main"
+    "footer footer";
+  height: 100vh;
+}
+
+@import "blocks/header";
+@import "blocks/footer";
+@import "blocks/login-page";
+@import "blocks/signin";
+@import "blocks/signup";
+@import "blocks/profile-layout";
+@import "blocks/profile-aside";
+@import "blocks/profile-main";
+@import "blocks/profile-rates";
+@import "blocks/profile-table";
+@import "blocks/network";
+@import "blocks/leaderboard";
+@import "blocks/reuse-clasess";

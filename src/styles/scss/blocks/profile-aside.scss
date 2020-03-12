@@ -1,0 +1,86 @@
+$block: ".profile-aside";
+
+#{$block} {
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, .1);
+  padding: 16px;
+  opacity: 1;
+  position: relative;
+  flex: 0 0 298px;
+  z-index: 1;
+  display: block;
+  transition: all 0.1s;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+
+  .profile-info {
+    position: relative;
+
+    &__edit-btn {
+      position: absolute;
+      top: 12px;
+      right: 13px;
+      padding: 0;
+    }
+
+    &__edit-img {
+      display: flex;
+    }
+
+    &__userpic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    &__personal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__name {
+      font-size: 1.25rem;
+      line-height: 1.2;
+      color: #414f5a;
+      word-wrap: break-word;
+      word-break: break-all;
+      text-align: center;
+    }
+
+    &__position {
+      font-size: 1rem;
+      line-height: 1.2;
+      color: #788b99;
+
+      &:first-of-type {
+        text-transform: underline;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-flow: column;
+      color: #333333;
+    }
+
+    &__item {
+      display: flex;
+      padding: 16px 0;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__item-name {
+      display: flex;
+      align-items: center;
+    }
+
+    &__item-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 16px;
+    }
+  }
+}

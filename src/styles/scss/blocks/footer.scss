@@ -1,0 +1,20 @@
+$block: ".page-footer";
+
+#{$block} {
+  grid-area: footer;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  min-height: 40px;
+  font-size: 0.875rem;
+
+  &__copyright {
+    padding-right: 10px;
+  }
+  &__link {
+    padding: 8px;
+  }
+}

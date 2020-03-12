@@ -1,0 +1,53 @@
+$block: ".profile-rates";
+
+#{$block} {
+  display: flex;
+  flex-direction: column;
+
+  &__values-block,
+  &__reports-block {
+    background: #fff;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 900;
+    color: #414f5a;
+  }
+
+  &__scores-layout {
+    display: flex;
+  }
+
+  &__scores {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px 0 0;
+  }
+
+  &__scores-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__scores-value {
+    font-weight: 700;
+  }
+
+  &__progressbar {
+    max-width: 100%;
+    height: 4px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+    }
+  }
+}
