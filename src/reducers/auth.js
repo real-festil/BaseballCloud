@@ -2,12 +2,15 @@ import { handleActions } from "redux-actions";
 import * as authActions from "../actions/auth";
 import { combineReducers } from "redux";
 
-const register = handleActions(
+const user = handleActions(
   {
     [authActions.registerSuccess](state, action) {
-      const { email, password } = action.payload;
+      const { id, email } = action.payload;
 
-      console.log(email, password);
+      return { id, email };
+    },
+    [authActions.registerFailure](state, action) {
+      return { error: action.payload.error };
     }
   },
   ""
@@ -28,4 +31,4 @@ const registerState = handleActions(
   ""
 );
 
-export default combineReducers({ register, registerState });
+export default combineReducers({ user, registerState });

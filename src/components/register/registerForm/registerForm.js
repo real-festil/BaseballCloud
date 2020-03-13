@@ -78,8 +78,9 @@ const RegisterForm = props => {
                   />
                 </div>
                 {meta.touched && meta.error && (
-                  <p style={{ color: "red" }}>{meta.error}</p>
+                  <p style={errorStyle}>{meta.error}</p>
                 )}
+                {meta.touched && <p style={errorStyle}>{props.error}</p>}
               </>
             )}
           </Field>
