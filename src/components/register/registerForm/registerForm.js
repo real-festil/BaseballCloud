@@ -6,7 +6,7 @@ const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 const RegisterForm = props => {
   return (
     <Form
-      onSubmit={values => console.log(values)}
+      onSubmit={values => props.onSubmit(values)}
       validate={values => {
         const errors = {};
 
