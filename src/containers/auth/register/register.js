@@ -47,7 +47,7 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.auth.user.error
+    error: state.auth.user.registerError
   };
 };
 

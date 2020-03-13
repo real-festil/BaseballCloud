@@ -13,7 +13,10 @@ const user = handleActions(
       return { id, email };
     },
     [authActions.registerFailure](state, action) {
-      return { error: action.payload.error };
+      return { registerError: action.payload.error };
+    },
+    [authActions.loginFailure](state, action) {
+      return { loginError: action.payload.error };
     }
   },
   ""
@@ -34,4 +37,19 @@ const registerState = handleActions(
   ""
 );
 
-export default combineReducers({ user, registerState });
+const loginState = handleActions(
+  {
+    [authActions.loginRequest]() {
+      return "requested";
+    },
+    [authActions.loginSuccess]() {
+      return "succeed";
+    },
+    [authActions.loginFailure]() {
+      return "failed";
+    }
+  },
+  ""
+);
+
+export default combineReducers({ user, registerState, loginState });

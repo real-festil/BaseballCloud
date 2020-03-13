@@ -39,16 +39,24 @@ class Login extends React.Component {
               </Field>
               <Field name="password">
                 {({ input }) => (
-                  <div className="modal-signIn__input-wrap input-wrap">
-                    <i className="fa fa-lock input-lock" aria-hidden="true"></i>
-                    <input
-                      {...input}
-                      type="password"
-                      className="modal-signIn__input modal-input"
-                      name="password"
-                      placeholder="Password"
-                    />
-                  </div>
+                  <>
+                    <div className="modal-signIn__input-wrap input-wrap">
+                      <i
+                        className="fa fa-lock input-lock"
+                        aria-hidden="true"
+                      ></i>
+                      <input
+                        {...input}
+                        type="password"
+                        className="modal-signIn__input modal-input"
+                        name="password"
+                        placeholder="Password"
+                      />
+                    </div>
+                    {this.props.error && (
+                      <p style={{ color: "red" }}>{this.props.error}</p>
+                    )}
+                  </>
                 )}
               </Field>
               <button type="submit" className="modal-submit">
@@ -72,4 +80,10 @@ class Login extends React.Component {
   }
 }
 
-export default connect()(Login);
+const mapStateToProps = state => {
+  return {
+    error: state.auth.user.loginError
+  };
+};
+
+export default connect(mapStateToProps)(Login);
