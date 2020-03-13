@@ -31,8 +31,8 @@ export const login = ({ email, password }) => async dispatch => {
       email,
       password
     });
-    dispatch(registerSuccess(res.data.data));
+    dispatch(loginSuccess(res.data.data));
   } catch (e) {
-    dispatch(registerFailure());
+    dispatch(loginFailure());
   }
 };

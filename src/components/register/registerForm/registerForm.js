@@ -39,8 +39,11 @@ const RegisterForm = props => {
                     placeholder="Email"
                   />
                 </div>
-                {meta.touched && meta.error && (
+                {meta.modified && meta.error && (
                   <p style={errorStyle}>{meta.error}</p>
+                )}
+                {meta.modified && props.error && (
+                  <p style={errorStyle}>{props.error}</p>
                 )}
               </>
             )}
@@ -59,7 +62,7 @@ const RegisterForm = props => {
                     minLength={8}
                   />
                 </div>
-                {meta.touched && meta.error && (
+                {meta.modified && meta.error && (
                   <p style={errorStyle}>{meta.error}</p>
                 )}
               </>
@@ -80,7 +83,6 @@ const RegisterForm = props => {
                 {meta.touched && meta.error && (
                   <p style={errorStyle}>{meta.error}</p>
                 )}
-                {meta.touched && <p style={errorStyle}>{props.error}</p>}
               </>
             )}
           </Field>

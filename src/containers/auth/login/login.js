@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
+import { login } from "../../../actions/auth";
+import { connect } from "react-redux";
 
 class Login extends React.Component {
+  onSubmit = values => {
+    this.props.dispatch(
+      login({ email: values.email, password: values.password })
+    );
+    console.log("sdsda");
+  };
+
   render() {
     return (
       <div className="modal-signIn">
@@ -12,7 +21,7 @@ class Login extends React.Component {
         </header>
 
         <Form
-          onSubmit={values => console.log(values)}
+          onSubmit={values => this.onSubmit(values)}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit} className="modal-signIn__form">
               <Field name="email">
@@ -63,4 +72,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect()(Login);

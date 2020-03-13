@@ -1,10 +1,13 @@
-import { handleActions } from "redux-actions";
+import { handleActions, combineActions } from "redux-actions";
 import * as authActions from "../actions/auth";
 import { combineReducers } from "redux";
 
 const user = handleActions(
   {
-    [authActions.registerSuccess](state, action) {
+    [combineActions(authActions.registerSuccess, authActions.loginSuccess)](
+      state,
+      action
+    ) {
       const { id, email } = action.payload;
 
       return { id, email };
