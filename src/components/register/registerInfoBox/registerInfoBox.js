@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import RegisterForm from "../registerForm/registerForm";
 
 const RegisterInfoBox = props => (
   <>
@@ -21,5 +23,9 @@ const RegisterInfoBox = props => (
     )}
   </>
 );
+
+RegisterForm.propTypes = {
+  type: PropTypes.string.isRequired
+};
 
 export default RegisterInfoBox;

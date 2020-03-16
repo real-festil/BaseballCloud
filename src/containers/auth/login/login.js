@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import { login } from "../../../actions/auth";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Login extends React.Component {
   onSubmit = values => {
-    this.props.dispatch(
-      login({ email: values.email, password: values.password })
-    );
-    console.log("sdsda");
+    this.props.login({ email: values.email, password: values.password });
   };
 
   render() {
@@ -80,10 +78,15 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  error: PropTypes.string
+};
+
 const mapStateToProps = state => {
   return {
     error: state.auth.user.loginError
   };
 };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, { login })(Login);

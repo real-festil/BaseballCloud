@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const RegisterCheckbox = props => {
   const { type, changeType } = props;
@@ -57,6 +58,11 @@ const RegisterCheckbox = props => {
       </button>
     </div>
   );
+};
+
+RegisterCheckbox.propTypes = {
+  type: PropTypes.string.isRequired,
+  changeType: PropTypes.func.isRequired
 };
 
 export default RegisterCheckbox;

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import RegisterCheckbox from "../../../components/register/registerCheckbox/registerCheckbox";
 import RegisterInfoBox from "../../../components/register/registerInfoBox/registerInfoBox";
 import RegisterForm from "../../../components/register/registerForm/registerForm";
-import API from "../../../utils/API";
 import { register } from "../../../actions/auth";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Register extends React.Component {
   state = {
@@ -13,9 +13,7 @@ class Register extends React.Component {
   };
 
   onSubmit = values => {
-    this.props.dispatch(
-      register({ email: values.email, password: values.password })
-    );
+    this.props.register({ email: values.email, password: values.password });
   };
 
   render() {
@@ -45,10 +43,15 @@ class Register extends React.Component {
   }
 }
 
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+  error: PropTypes.string
+};
+
 const mapStateToProps = state => {
   return {
     error: state.auth.user.registerError
   };
 };
 
-export default connect(mapStateToProps)(Register);
+export default connect(mapStateToProps, { register })(Register);
