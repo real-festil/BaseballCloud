@@ -1,5 +1,6 @@
 import { createAction } from "redux-actions";
 import API from "../utils/API";
+import history from "../utils/history";
 
 export const registerRequest = createAction("REGISTER_REQUEST");
 export const registerSuccess = createAction("REGISTER_SUCCESS");
@@ -17,6 +18,7 @@ export const register = ({ email, password }) => async dispatch => {
       password
     });
     dispatch(registerSuccess(res.data.data));
+    history.push("/profile");
   } catch (e) {
     dispatch(
       registerFailure({ error: e.response.data.errors.full_messages[0] })
@@ -32,6 +34,7 @@ export const login = ({ email, password }) => async dispatch => {
       password
     });
     dispatch(loginSuccess(res.data.data));
+    history.push("/profile");
   } catch (e) {
     dispatch(loginFailure({ error: e.response.data.errors[0] }));
   }

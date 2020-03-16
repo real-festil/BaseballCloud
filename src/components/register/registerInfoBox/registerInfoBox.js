@@ -25,7 +25,7 @@ const RegisterInfoBox = props => (
 );
 
 RegisterForm.propTypes = {
-  type: PropTypes.string.isRequired
+  type: PropTypes.string
 };
 
 export default RegisterInfoBox;

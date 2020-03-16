@@ -88,11 +88,11 @@ const RegisterForm = props => {
             )}
           </Field>
           <p className="modal-signUp__desc">
-            By clicking Sign Up, you agree to our
+            By clicking Sign Up, you agree to our{" "}
             <a href="#" className="page-link">
               Terms of Service
             </a>{" "}
-            and
+            and{" "}
             <a href="#" className="page-link">
               Privacy Policy
             </a>
@@ -108,7 +108,7 @@ const RegisterForm = props => {
 };
 
 RegisterForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   error: PropTypes.string
 };
 
