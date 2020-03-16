@@ -21,6 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "3.4.0",
+    "react-select": "^3.0.8",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-devtools": "^3.5.0",
