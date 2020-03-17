@@ -4,7 +4,7 @@ import userPic from "../../../styles/img/userpic.png";
 const SidebarInfo = props => (
   <aside className="profile-aside">
     <div className="profile-info">
-      <button className="profile-info__edit-btn">
+      <button className="profile-info__edit-btn" onClick={props.onFormOpen}>
         <span className="profile-info__edit-img">
           <svg
             xmlns="http://www.w3.org/2000/svg"

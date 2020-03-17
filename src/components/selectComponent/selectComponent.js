@@ -21,25 +21,26 @@ const selectStyles = {
 };
 
 const SelectComponent = props => {
-  const {
-    input: { name, onChange },
-    meta,
-    options,
-    ...rest
-  } = props;
+  const { input, meta, options, isMulti, placeholder, ...rest } = props;
 
   return (
-    <Select
-      {...rest}
-      styles={selectStyles}
-      inputValue=""
-      isSearchable={false}
-      name={name}
-      options={options}
-      isMulti={props.isMulti}
-      onChange={onChange}
-      placeholder={props.placeholder}
-    />
+    <>
+      <Select
+        {...input}
+        {...rest}
+        styles={selectStyles}
+        inputValue=""
+        isSearchable={false}
+        name={input.name}
+        options={options}
+        isMulti={isMulti}
+        onChange={input.onChange}
+        placeholder={placeholder}
+      />
+      {meta.touched && meta.error && (
+        <p style={{ color: "red", paddingBottom: "10px" }}>{meta.error}</p>
+      )}
+    </>
   );
 };
 

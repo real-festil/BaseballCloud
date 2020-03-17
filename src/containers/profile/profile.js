@@ -11,7 +11,15 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-container">
-        {this.state.isSidebarFormOpened ? <SidebarForm /> : <SidebarInfo />}
+        {this.state.isSidebarFormOpened ? (
+          <SidebarForm
+            onFormClose={() => this.setState({ isSidebarFormOpened: false })}
+          />
+        ) : (
+          <SidebarInfo
+            onFormOpen={() => this.setState({ isSidebarFormOpened: true })}
+          />
+        )}
         <main className="profile-main">
           <section className="profile-rates">
             <div className="profile-rates__values-block">

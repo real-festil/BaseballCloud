@@ -21,6 +21,12 @@
   color: black;
 }
 
+.SidebarForm input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .SidebarForm textarea {
   width: 100%;
   background-color: #eff1f3;
@@ -39,7 +45,7 @@
 
 .FormControl {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .CancelButton {
