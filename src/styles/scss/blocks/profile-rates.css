@@ -1,0 +1,72 @@
+.profile-rates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile-rates__values-block, .profile-rates__reports-block {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile-rates__title {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: #414f5a;
+}
+
+.profile-rates__scores-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile-rates__scores {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 16px 24px 0 0;
+}
+
+.profile-rates__scores-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.profile-rates__scores-value {
+  font-weight: 700;
+}
+
+.profile-rates__progressbar {
+  max-width: 100%;
+  height: 4px;
+}
+
+.profile-rates__progressbar svg {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+/*# sourceMappingURL=profile-rates.css.map */

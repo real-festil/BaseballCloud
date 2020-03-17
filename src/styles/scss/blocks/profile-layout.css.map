@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,kBAAkB,CAAR;EACR,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,MAAM;EAChB,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CAC/B",
+    "sources": [
+        "profile-layout.scss"
+    ],
+    "names": [],
+    "file": "profile-layout.css"
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import Select from "../../selectComponent/selectComponent";
+import classes from "./sidebarForm.module.css";
+import userPic from "../../../styles/img/userpic.png";
 
 const positionOptions = [
   { value: "Catcher", label: "Catcher" },
@@ -19,64 +21,65 @@ const handOptions = [
 
 const SidebarForm = props => (
   <aside className="profile-aside">
+    <div className={classes.ProfileImage}>
+      <img src={userPic} alt="" />
+    </div>
     <Form
       onSubmit={values => console.log(values)}
       render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.SidebarForm}>
           <Field name="firstName">
             {({ input }) => (
-              <input {...input} name="firstName" placeholder="First Name" />
+              <input {...input} name="firstName" placeholder="First Name *" />
             )}
           </Field>
           <Field name="lastName">
             {({ input }) => (
-              <input {...input} name="lastName" placeholder="Last Name" />
+              <input {...input} name="lastName" placeholder="Last Name *" />
             )}
           </Field>
           <Field
-            name="Position"
+            name="position"
             component={Select}
             options={positionOptions}
-            placeholder="Position in game"
+            placeholder="Position in game *"
           />
           <Field
-            name="SecPosition"
+            name="secPosition"
             component={Select}
             options={positionOptions}
             placeholder="Secondary position in game"
           />
           <h2>Personal info</h2>
-          <Field name="firstName">
+          <Field name="age">
+            {({ input }) => <input {...input} name="Age" placeholder="Age *" />}
+          </Field>
+          <Field name="feet">
             {({ input }) => (
-              <input {...input} name="firstName" placeholder="Age" />
+              <input {...input} name="Feet" placeholder="Feet *" />
             )}
           </Field>
-          <Field name="firstName">
+          <Field name="inches">
             {({ input }) => (
-              <input {...input} name="firstName" placeholder="Feet" />
+              <input {...input} name="Inches" placeholder="Inches" />
             )}
           </Field>
-          <Field name="firstName">
+          <Field name="weight">
             {({ input }) => (
-              <input {...input} name="firstName" placeholder="Inches" />
-            )}
-          </Field>
-          <Field name="firstName">
-            {({ input }) => (
-              <input {...input} name="firstName" placeholder="Weight" />
+              <input {...input} name="Weight" placeholder="Weight *" />
             )}
           </Field>
           <Field
-            name="Throws"
+            name="throws"
             component={Select}
             options={handOptions}
-            placeholder="Throws"
+            placeholder="Throws *"
           />
           <Field
-            name="Bats"
+            name="bats"
             component={Select}
             options={handOptions}
-            placeholder="Bats"
+            placeholder="Bats *"
           />
           <h2>School</h2>
           <Field
@@ -92,22 +95,26 @@ const SidebarForm = props => (
             placeholder="School Year"
           />
           <Field
-            name="Team"
+            name="team"
             component={Select}
+            isMulti={true}
             options={handOptions}
             placeholder="Team"
           />
           <h2>Facility</h2>
           <Field
-            name="Facility"
+            name="facility"
             component={Select}
+            isMulti={true}
             options={handOptions}
             placeholder="Facility"
           />
           <h2>About</h2>
-          <Field name="About" component="textarea" />
-          <button>Cancel</button>
-          <button>Submit</button>
+          <Field name="about" component="textarea" />
+          <div className={classes.FormControl}>
+            <button className={classes.CancelButton}>Cancel</button>
+            <button className={classes.SubmitButton}>Submit</button>
+          </div>
         </form>
       )}
     />

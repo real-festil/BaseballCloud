@@ -1,0 +1,26 @@
+.page-footer {
+  grid-area: footer;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px;
+  min-height: 40px;
+  font-size: 0.875rem;
+}
+
+.page-footer__copyright {
+  padding-right: 10px;
+}
+
+.page-footer__link {
+  padding: 8px;
+}
+/*# sourceMappingURL=footer.css.map */

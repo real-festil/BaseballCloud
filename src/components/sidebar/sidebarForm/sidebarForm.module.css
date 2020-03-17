@@ -1,0 +1,77 @@
+.SidebarForm {
+  padding: 5px;
+}
+
+.ProfileImage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+}
+
+.ProfileImage img {
+  height: 100%;
+}
+
+.SidebarForm input {
+  margin: 5px;
+  background-color: #eff1f3;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+}
+
+.SidebarForm textarea {
+  width: 100%;
+  background-color: #eff1f3;
+  border: none;
+  resize: none;
+  padding: 10px;
+  height: 110px !important;
+}
+
+.SidebarForm button {
+  width: 45%;
+  height: 38px;
+  border-radius: 4px;
+  font-weight: normal;
+}
+
+.FormControl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.CancelButton {
+  border: solid 1px #d1d7db;
+  background-color: #ffffff;
+}
+
+.CancelButton:hover {
+  color: #48bbff;
+  -webkit-box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0.8);
+          box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0.8);
+  border: solid 1px #48bbff;
+}
+
+.SubmitButton {
+  color: #ffffff;
+  font-weight: 400;
+  border: solid 1px transparent;
+  -webkit-box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0);
+          box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0);
+  background-color: #48bbff;
+}
+
+.SubmitButton:hover {
+  -webkit-box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0.8);
+          box-shadow: 0 0 4px 0 rgba(72, 187, 255, 0.8);
+}
+/*# sourceMappingURL=sidebarForm.module.css.map */

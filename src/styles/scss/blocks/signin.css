@@ -1,0 +1,47 @@
+.modal-signIn {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 450px;
+}
+
+.modal-signIn__header {
+  margin-bottom: 48px;
+}
+
+.modal-signIn__title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  color: #667784;
+  margin-bottom: 8px;
+}
+
+.modal-signIn__desc {
+  text-align: center;
+}
+
+.modal-signIn__help-link {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.modal-signIn__signUp-link {
+  text-decoration: underline;
+  padding-left: 3px;
+  color: #48bbff;
+  cursor: pointer;
+}
+/*# sourceMappingURL=signin.css.map */
