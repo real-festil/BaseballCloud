@@ -9,50 +9,56 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { connect } from "react-redux";
 
-const Profile = props => {
-  const [isSidebarFormOpened, toggleSidebarForm] = useState(true);
-  const GET_CURRENT_PROFILE = gql`
-    {
-      current_profile {
+const GET_CURRENT_PROFILE = gql`
+  {
+    current_profile {
+      id
+      first_name
+      last_name
+      position
+      position2
+      avatar
+      throws_hand
+      bats_hand
+      biography
+      school_year
+      feet
+      inches
+      weight
+      age
+      school {
         id
-        first_name
-        last_name
-        position
-        position2
-        avatar
-        throws_hand
-        bats_hand
-        biography
-        school_year
-        feet
-        inches
-        weight
-        age
-        school {
-          id
-          name
-        }
-        teams {
-          id
-          name
-        }
-        facilities {
-          id
-          email
-          u_name
-        }
+        name
+      }
+      teams {
+        id
+        name
+      }
+      facilities {
+        id
+        email
+        u_name
       }
     }
-  `;
-  const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
+  }
+`;
 
-  console.log(loading, error, data);
+const Profile = props => {
+  const [isSidebarFormOpened, toggleSidebarForm] = useState(false);
+
+  const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+
   return (
     <div className="profile-container">
       {isSidebarFormOpened ? (
         <SidebarForm onFormClose={() => toggleSidebarForm(false)} />
       ) : (
-        <SidebarInfo onFormOpen={() => toggleSidebarForm(true)} />
+        <SidebarInfo
+          onFormOpen={() => toggleSidebarForm(true)}
+          userData={loading ? null : data}
+        />
       )}
       <main className="profile-main">
         <section className="profile-rates">
