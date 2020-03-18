@@ -5,6 +5,7 @@ import Auth from "./containers/auth/auth";
 import Profile from "./containers/profile/profile";
 import { Router, Switch, Redirect, Route } from "react-router-dom";
 import history from "./utils/history";
+import ApolloWrapper from "./utils/Apollo";
 import "./styles/css/style.css";
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
             <Auth />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <ApolloWrapper>
+              <Profile />
+            </ApolloWrapper>
           </Route>
         </Switch>
         <Footer />

@@ -8,9 +8,9 @@ const user = handleActions(
       state,
       action
     ) {
-      const { id, email } = action.payload;
+      const { id, email } = action.payload.data.data;
 
-      return { id, email };
+      return { id, email, headers: action.payload.headers };
     },
     [authActions.registerFailure](state, action) {
       return { registerError: action.payload.error };

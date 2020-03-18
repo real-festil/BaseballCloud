@@ -14,10 +14,30 @@ const positionOptions = [
   { value: "Pitcher", label: "Pitcher" }
 ];
 
+const schoolOptions = [
+  { value: "FSU", label: "FSU" },
+  { value: "Rockledge", label: "Rockledge" }
+];
+
 const handOptions = [
   { value: "R", label: "R" },
   { value: "L", label: "L" }
 ];
+
+const schoolYearOptions = [
+  { value: "Freshman", label: "Freshman" },
+  { value: "Sophomore", label: "Sophomore" },
+  { value: "Junior", label: "Junior" },
+  { value: "Senior", label: "Senior" },
+  { value: "None", label: "None" }
+];
+
+const teamOptions = [
+  { value: "Scorps", label: "Scorps" },
+  { value: "FTB", label: "FTB" }
+];
+
+const facilityOptions = [{ value: "Example", label: "Example" }];
 
 const errorStyle = {
   color: "red",
@@ -174,20 +194,20 @@ const SidebarForm = props => (
           <Field
             name="FSU"
             component={Select}
-            options={handOptions}
+            options={schoolOptions}
             placeholder="FSU"
           />
           <Field
             name="schoolYear"
             component={Select}
-            options={handOptions}
+            options={schoolYearOptions}
             placeholder="School Year"
           />
           <Field
             name="team"
             component={Select}
             isMulti={true}
-            options={handOptions}
+            options={teamOptions}
             placeholder="Team"
           />
           <h2>Facility</h2>
@@ -195,7 +215,7 @@ const SidebarForm = props => (
             name="facility"
             component={Select}
             isMulti={true}
-            options={handOptions}
+            options={facilityOptions}
             placeholder="Facility"
           />
           <h2>About</h2>

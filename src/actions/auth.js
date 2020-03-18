@@ -17,7 +17,7 @@ export const register = ({ email, password }) => async dispatch => {
       email,
       password
     });
-    dispatch(registerSuccess(res.data.data));
+    dispatch(registerSuccess(res));
     history.push("/profile");
   } catch (e) {
     dispatch(
@@ -33,7 +33,7 @@ export const login = ({ email, password }) => async dispatch => {
       email,
       password
     });
-    dispatch(loginSuccess(res.data.data));
+    dispatch(loginSuccess(res));
     history.push("/profile");
   } catch (e) {
     dispatch(loginFailure({ error: e.response.data.errors[0] }));
