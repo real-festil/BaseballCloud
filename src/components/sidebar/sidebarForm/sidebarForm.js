@@ -49,9 +49,36 @@ const SidebarForm = props => (
     <div className={classes.ProfileImage}>
       <img src={userPic} alt="" />
     </div>
+    {console.log(props.initialData)}
     <Form
       initialValues={
-        props.initialData || {
+        {
+          ...props.initialData,
+          position: [
+            {
+              value: props.initialData.position,
+              label: props.initialData.position
+            }
+          ],
+          position2: [
+            {
+              value: props.initialData.position2,
+              label: props.initialData.position2
+            }
+          ],
+          bats_hand: [
+            {
+              value: props.initialData.bats_hand,
+              label: props.initialData.bats_hand
+            }
+          ],
+          throws_hand: [
+            {
+              value: props.initialData.throws_hand,
+              label: props.initialData.throws_hand
+            }
+          ]
+        } || {
           feet: null,
           inches: 0,
           weight: 50,

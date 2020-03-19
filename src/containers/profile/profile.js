@@ -3,45 +3,8 @@ import userPic from "../../styles/img/userpic.png";
 import SidebarForm from "../../components/sidebar/sidebarForm/sidebarForm";
 import SidebarInfo from "../../components/sidebar/sidebarInfo/sidebarInfo";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { GET_CURRENT_PROFILE } from "../../utils/queries";
 import { gql } from "apollo-boost";
-import ApolloWrapper from "../../utils/Apollo";
-import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
-import { connect } from "react-redux";
-
-const GET_CURRENT_PROFILE = gql`
-  {
-    current_profile {
-      id
-      first_name
-      last_name
-      position
-      position2
-      avatar
-      throws_hand
-      bats_hand
-      biography
-      school_year
-      feet
-      inches
-      weight
-      age
-      school {
-        id
-        name
-      }
-      teams {
-        id
-        name
-      }
-      facilities {
-        id
-        email
-        u_name
-      }
-    }
-  }
-`;
 
 const UPDATE_CURRENT_PROFILE = gql`
   mutation UpdateProfile($form: UpdateProfileInput!) {
@@ -95,7 +58,6 @@ const Profile = props => {
   const [isSidebarFormOpened, toggleSidebarForm] = useState(true);
   const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
   const [updateProfile] = useMutation(UPDATE_CURRENT_PROFILE);
-  console.log(data);
 
   useEffect(() => {
     if (!loading)
@@ -105,18 +67,20 @@ const Profile = props => {
   }, [data, loading]);
 
   const onSubmitForm = values => {
+    console.log("s " + values);
     const updatedValues = {
       ...values,
       throws_hand: values.throws_hand.value,
       bats_hand: values.bats_hand.value,
       position: values.position.value,
-      position2: values.position2.value,
+      position2: values.position2 ? values.position2.value : null,
       age: parseInt(values.age),
       feet: parseInt(values.feet),
-      inches: parseInt(values.inches),
+      inches: values.inches ? parseInt(values.inches) : 0,
       weight: parseInt(values.weight),
       id: data.current_profile.id
     };
+    console.log(updatedValues);
     updateProfile({
       variables: { form: updatedValues }
     });

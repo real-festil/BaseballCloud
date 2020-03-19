@@ -10,19 +10,27 @@ import { connect } from "react-redux";
 import "./styles/css/style.css";
 
 function App(props) {
+  const { isAuth } = props;
+
   return (
     <div className="main">
       <Router history={history}>
-        <Header />
+        <ApolloWrapper>
+          <Header isAuth={isAuth} />
+        </ApolloWrapper>
         <Route exact path="/">
-          <Redirect to="/registration" />
+          {isAuth ? (
+            <Redirect to="/profile" />
+          ) : (
+            <Redirect to="/registration" />
+          )}
         </Route>
         <Switch>
           <Route exact path={"/(registration|login)/"}>
-            <Auth />
+            {isAuth ? <Redirect to="/profile" /> : <Auth />}
           </Route>
           <Route path="/profile">
-            {props.isAuth ? (
+            {isAuth ? (
               <ApolloWrapper>
                 <Profile />
               </ApolloWrapper>
