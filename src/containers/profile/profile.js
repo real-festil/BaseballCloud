@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import userPic from "../../styles/img/userpic.png";
 import SidebarForm from "../../components/sidebar/sidebarForm/sidebarForm";
 import SidebarInfo from "../../components/sidebar/sidebarInfo/sidebarInfo";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import ApolloWrapper from "../../utils/Apollo";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -43,17 +43,99 @@ const GET_CURRENT_PROFILE = gql`
   }
 `;
 
-const Profile = props => {
-  const [isSidebarFormOpened, toggleSidebarForm] = useState(false);
+const UPDATE_CURRENT_PROFILE = gql`
+  mutation UpdateProfile($form: UpdateProfileInput!) {
+    update_profile(input: $form) {
+      profile {
+        id
+        first_name
+        last_name
+        position
+        position2
+        avatar
+        throws_hand
+        bats_hand
+        biography
+        school_year
+        feet
+        inches
+        weight
+        age
+        recent_events {
+          id
+          event_type
+          event_name
+          date
+          recent_avatars {
+            id
+            first_name
+            last_name
+            avatar
+          }
+        }
+        school {
+          id
+          name
+        }
+        teams {
+          id
+          name
+        }
+        facilities {
+          id
+          email
+          u_name
+        }
+      }
+    }
+  }
+`;
 
+const Profile = props => {
+  const [isSidebarFormOpened, toggleSidebarForm] = useState(true);
   const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
+  const [updateProfile] = useMutation(UPDATE_CURRENT_PROFILE);
+  console.log(data);
+
+  useEffect(() => {
+    if (!loading)
+      if (data.current_profile.first_name) {
+        toggleSidebarForm(false);
+      }
+  }, [data, loading]);
+
+  const onSubmitForm = values => {
+    const updatedValues = {
+      ...values,
+      throws_hand: values.throws_hand.value,
+      bats_hand: values.bats_hand.value,
+      position: values.position.value,
+      position2: values.position2.value,
+      age: parseInt(values.age),
+      feet: parseInt(values.feet),
+      inches: parseInt(values.inches),
+      weight: parseInt(values.weight),
+      id: data.current_profile.id
+    };
+    updateProfile({
+      variables: { form: updatedValues }
+    });
+    toggleSidebarForm(false);
+  };
+
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
   return (
     <div className="profile-container">
       {isSidebarFormOpened ? (
-        <SidebarForm onFormClose={() => toggleSidebarForm(false)} />
+        <SidebarForm
+          onFormClose={() =>
+            data.current_profile.first_name && toggleSidebarForm(false)
+          }
+          onSubmit={onSubmitForm}
+          initialData={data.current_profile}
+        />
       ) : (
         <SidebarInfo
           onFormOpen={() => toggleSidebarForm(true)}

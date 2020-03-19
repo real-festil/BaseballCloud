@@ -9,11 +9,16 @@ import PropTypes from "prop-types";
 
 class Register extends React.Component {
   state = {
-    currentType: "Player"
+    currentType: "player"
   };
 
   onSubmit = values => {
-    this.props.register({ email: values.email, password: values.password });
+    this.props.register({
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.confirm_password,
+      role: this.state.currentType
+    });
   };
 
   render() {

@@ -10,14 +10,22 @@ export const loginRequest = createAction("LOGIN_REQUEST");
 export const loginSuccess = createAction("LOGIN_SUCCESS");
 export const loginFailure = createAction("LOGIN_FAILURE");
 
-export const register = ({ email, password }) => async dispatch => {
+export const register = ({
+  email,
+  password,
+  password_confirmation,
+  role
+}) => async dispatch => {
   dispatch(registerRequest());
   try {
     const res = await API.post("/auth", {
       email,
-      password
+      password,
+      password_confirmation,
+      role
     });
     dispatch(registerSuccess(res));
+    console.log(res);
     history.push("/profile");
   } catch (e) {
     dispatch(

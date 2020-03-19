@@ -21,8 +21,8 @@ const RegisterForm = props => {
         } else if (values.password.length < 8) {
           errors.password = "Must contain more than 8 characters";
         }
-        if (values.password !== values.confirmPassword)
-          errors.confirmPassword = "Passwords are not equal";
+        if (values.password !== values.confirm_password)
+          errors.confirm_password = "Passwords are not equal";
 
         return errors;
       }}
@@ -69,7 +69,7 @@ const RegisterForm = props => {
               </>
             )}
           </Field>
-          <Field name="confirmPassword">
+          <Field name="confirm_password">
             {({ input, meta }) => (
               <>
                 <div className="modal-signUp__input-wrap input-wrap">

@@ -9,12 +9,12 @@ const RegisterCheckbox = props => {
       <button
         className={
           "modal-signUp__btn modal-signUp__btn--player " +
-          (type === "Player" && "modal-btn-checked")
+          (type === "player" && "modal-btn-checked")
         }
-        onClick={() => changeType("Player")}
+        onClick={() => changeType("player")}
       >
         <span
-          className={"modal-signUp__check-img" + (type === "Player" && "hide")}
+          className={"modal-signUp__check-img" + (type === "player" && "hide")}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,17 +29,17 @@ const RegisterCheckbox = props => {
             ></path>
           </svg>
         </span>
-        <span className="modal-signUp__btn-label">Sign Up as Player</span>
+        <span className="modal-signUp__btn-label">Sign Up as player</span>
       </button>
       <button
         className={
           "modal-signUp__btn modal-signUp__btn--player " +
-          (type === "Scout" && "modal-btn-checked")
+          (type === "scout" && "modal-btn-checked")
         }
-        onClick={() => changeType("Scout")}
+        onClick={() => changeType("scout")}
       >
         <span
-          className={"modal-signUp__check-img" + (type === "Scout" && "hide")}
+          className={"modal-signUp__check-img" + (type === "scout" && "hide")}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const RegisterCheckbox = props => {
             ></path>
           </svg>
         </span>
-        <span className="modal-signUp__btn-label">Sign Up as Scout</span>
+        <span className="modal-signUp__btn-label">Sign Up as scout</span>
       </button>
     </div>
   );

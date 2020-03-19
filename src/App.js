@@ -6,9 +6,10 @@ import Profile from "./containers/profile/profile";
 import { Router, Switch, Redirect, Route } from "react-router-dom";
 import history from "./utils/history";
 import ApolloWrapper from "./utils/Apollo";
+import { connect } from "react-redux";
 import "./styles/css/style.css";
 
-function App() {
+function App(props) {
   return (
     <div className="main">
       <Router history={history}>
@@ -21,9 +22,13 @@ function App() {
             <Auth />
           </Route>
           <Route path="/profile">
-            <ApolloWrapper>
-              <Profile />
-            </ApolloWrapper>
+            {props.isAuth ? (
+              <ApolloWrapper>
+                <Profile />
+              </ApolloWrapper>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
         </Switch>
         <Footer />
@@ -32,4 +37,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.user.headers
+  };
+};
+
+export default connect(mapStateToProps)(App);

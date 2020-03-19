@@ -50,15 +50,32 @@ const SidebarForm = props => (
       <img src={userPic} alt="" />
     </div>
     <Form
-      onSubmit={values => console.log(values)}
+      initialValues={
+        props.initialData || {
+          feet: null,
+          inches: 0,
+          weight: 50,
+          age: null,
+          biography: "",
+          position: null,
+          position2: null,
+          first_name: null,
+          last_name: null,
+          bats_hand: null,
+          throws_hand: null,
+          teams: [],
+          facilities: []
+        }
+      }
+      onSubmit={values => props.onSubmit(values)}
       validate={values => {
         const errors = {};
 
-        if (!values.firstName) {
-          errors.firstName = "Required";
+        if (!values.first_name) {
+          errors.first_name = "Required";
         }
-        if (!values.lastName) {
-          errors.lastName = "Required";
+        if (!values.last_name) {
+          errors.last_name = "Required";
         }
         if (!values.position) {
           errors.position = "Required";
@@ -72,11 +89,11 @@ const SidebarForm = props => (
         if (!values.weight) {
           errors.weight = "Required";
         }
-        if (!values.throws) {
-          errors.throws = "Required";
+        if (!values.throws_hand) {
+          errors.throws_hand = "Required";
         }
-        if (!values.bats) {
-          errors.bats = "Required";
+        if (!values.bats_hand) {
+          errors.bats_hand = "Required";
         }
         if (values.age > 30) {
           errors.age = "Must not be older than 30";
@@ -100,20 +117,24 @@ const SidebarForm = props => (
       }}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={classes.SidebarForm}>
-          <Field name="firstName">
+          <Field name="first_name">
             {({ input, meta }) => (
               <>
-                <input {...input} name="firstName" placeholder="First Name *" />
+                <input
+                  {...input}
+                  name="first_name"
+                  placeholder="First Name *"
+                />
                 {meta.touched && meta.error && (
                   <p style={errorStyle}>{meta.error}</p>
                 )}
               </>
             )}
           </Field>
-          <Field name="lastName">
+          <Field name="last_name">
             {({ input, meta }) => (
               <>
-                <input {...input} name="lastName" placeholder="Last Name *" />
+                <input {...input} name="last_name" placeholder="Last Name *" />
                 {meta.touched && meta.error && (
                   <p style={errorStyle}>{meta.error}</p>
                 )}
@@ -127,7 +148,7 @@ const SidebarForm = props => (
             placeholder="Position in game *"
           />
           <Field
-            name="secPosition"
+            name="position2"
             component={Select}
             options={positionOptions}
             placeholder="Secondary position in game"
@@ -179,13 +200,13 @@ const SidebarForm = props => (
             )}
           </Field>
           <Field
-            name="throws"
+            name="throws_hand"
             component={Select}
             options={handOptions}
             placeholder="Throws *"
           />
           <Field
-            name="bats"
+            name="bats_hand"
             component={Select}
             options={handOptions}
             placeholder="Bats *"
@@ -219,7 +240,7 @@ const SidebarForm = props => (
             placeholder="Facility"
           />
           <h2>About</h2>
-          <Field name="about" component="textarea" />
+          <Field name="biography" component="textarea" />
           <div className={classes.FormControl}>
             <button
               className={classes.CancelButton}
