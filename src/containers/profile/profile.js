@@ -3,56 +3,10 @@ import userPic from "../../styles/img/userpic.png";
 import SidebarForm from "../../components/sidebar/sidebarForm/sidebarForm";
 import SidebarInfo from "../../components/sidebar/sidebarInfo/sidebarInfo";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { GET_CURRENT_PROFILE } from "../../utils/queries";
-import { gql } from "apollo-boost";
-
-const UPDATE_CURRENT_PROFILE = gql`
-  mutation UpdateProfile($form: UpdateProfileInput!) {
-    update_profile(input: $form) {
-      profile {
-        id
-        first_name
-        last_name
-        position
-        position2
-        avatar
-        throws_hand
-        bats_hand
-        biography
-        school_year
-        feet
-        inches
-        weight
-        age
-        recent_events {
-          id
-          event_type
-          event_name
-          date
-          recent_avatars {
-            id
-            first_name
-            last_name
-            avatar
-          }
-        }
-        school {
-          id
-          name
-        }
-        teams {
-          id
-          name
-        }
-        facilities {
-          id
-          email
-          u_name
-        }
-      }
-    }
-  }
-`;
+import {
+  GET_CURRENT_PROFILE,
+  UPDATE_CURRENT_PROFILE
+} from "../../utils/queries";
 
 const Profile = props => {
   const [isSidebarFormOpened, toggleSidebarForm] = useState(true);
@@ -67,22 +21,23 @@ const Profile = props => {
   }, [data, loading]);
 
   const onSubmitForm = values => {
-    console.log("s " + values);
     const updatedValues = {
       ...values,
       throws_hand: values.throws_hand.value,
       bats_hand: values.bats_hand.value,
       position: values.position.value,
-      position2: values.position2 ? values.position2.value : null,
+      position2: values.position2.value,
       age: parseInt(values.age),
       feet: parseInt(values.feet),
-      inches: values.inches ? parseInt(values.inches) : 0,
+      inches: parseInt(values.inches || 0),
       weight: parseInt(values.weight),
       id: data.current_profile.id
     };
-    console.log(updatedValues);
+    delete updatedValues["__typename"];
     updateProfile({
-      variables: { form: updatedValues }
+      variables: {
+        form: updatedValues
+      }
     });
     toggleSidebarForm(false);
   };
