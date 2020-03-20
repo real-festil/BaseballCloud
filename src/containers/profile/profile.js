@@ -21,6 +21,7 @@ const Profile = props => {
   }, [data, loading]);
 
   const onSubmitForm = values => {
+    console.log(values);
     const updatedValues = {
       ...values,
       throws_hand: values.throws_hand.value,
@@ -31,6 +32,7 @@ const Profile = props => {
       feet: parseInt(values.feet),
       inches: parseInt(values.inches || 0),
       weight: parseInt(values.weight),
+      // school: {name: values.school.name},
       id: data.current_profile.id
     };
     delete updatedValues["__typename"];

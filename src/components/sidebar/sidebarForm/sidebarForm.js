@@ -16,11 +16,6 @@ const positionOptions = [
   { value: "Pitcher", label: "Pitcher" }
 ];
 
-const schoolOptions = [
-  { value: "FSU", label: "FSU" },
-  { value: "Rockledge", label: "Rockledge" }
-];
-
 const handOptions = [
   { value: "R", label: "R" },
   { value: "L", label: "L" }
@@ -33,13 +28,6 @@ const schoolYearOptions = [
   { value: "Senior", label: "Senior" },
   { value: "None", label: "None" }
 ];
-
-const teamOptions = [
-  { value: "Scorps", label: "Scorps" },
-  { value: "FTB", label: "FTB" }
-];
-
-const facilityOptions = [{ value: "Example", label: "Example" }];
 
 const errorStyle = {
   color: "red",
@@ -59,7 +47,11 @@ const SidebarForm = props => {
 
   const facilitiesOptions = !facilities.loading
     ? facilities.data.facilities.facilities.map(facility => {
-        return { value: facility.u_name, label: facility.u_name };
+        return {
+          value: facility.u_name,
+          label: facility.u_name,
+          id: facility.id
+        };
       })
     : null;
 
@@ -112,6 +104,7 @@ const SidebarForm = props => {
             last_name: null,
             bats_hand: null,
             throws_hand: null,
+            school: null,
             teams: [],
             facilities: []
           }
@@ -266,15 +259,15 @@ const SidebarForm = props => {
             />
             <h2>School</h2>
             <Field
-              name="FSU"
+              name="school"
               component={Select}
-              options={schoolOptions}
+              options={schoolsOptions}
               placeholder="FSU"
             />
             <Field
               name="schoolYear"
               component={Select}
-              options={schoolsOptions}
+              options={schoolYearOptions}
               placeholder="School Year"
             />
             <Field
