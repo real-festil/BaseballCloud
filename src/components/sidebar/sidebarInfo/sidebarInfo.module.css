@@ -1,0 +1,14 @@
+.Heading {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 300;
+  color: #667784;
+}
+
+.TextBox {
+  font-size: 16px;
+  color: #667784;
+  word-wrap: break-word;
+  margin-bottom: 11px;
+}
+/*# sourceMappingURL=sidebarInfo.module.css.map */

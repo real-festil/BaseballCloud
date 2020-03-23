@@ -30,8 +30,8 @@ const Profile = props => {
     });
     const updatedValues = {
       ...values,
-      throws_hand: values.throws_hand.value,
-      bats_hand: values.bats_hand.value,
+      throws_hand: values.throws_hand.name,
+      bats_hand: values.bats_hand.name,
       position: values.position.name,
       position2: values.position2.name,
       age: parseInt(values.age),
@@ -45,6 +45,7 @@ const Profile = props => {
       id: data.current_profile.id
     };
     delete updatedValues["__typename"];
+    console.log(updatedValues);
     updateProfile({
       variables: {
         form: updatedValues

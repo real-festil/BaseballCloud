@@ -97,6 +97,10 @@ const SidebarForm = props => {
               id: props.initialData.throws_hand,
               name: props.initialData.throws_hand
             },
+            school_year: {
+              id: props.initialData.school_year,
+              name: props.initialData.school_year
+            },
             facilities: initialFacilities
           } || {
             feet: null,
@@ -110,7 +114,7 @@ const SidebarForm = props => {
             last_name: null,
             bats_hand: null,
             throws_hand: null,
-            schools: null,
+            school: null,
             teams: [],
             facilities: []
           }
@@ -265,7 +269,7 @@ const SidebarForm = props => {
             />
             <h2>School</h2>
             <Field
-              name="schools"
+              name="school"
               component={Select}
               options={schoolsOptions}
               placeholder="FSU"

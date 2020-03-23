@@ -1,5 +1,6 @@
 import React from "react";
 import userPic from "../../../styles/img/userpic.png";
+import classes from "./sidebarInfo.module.css";
 
 const SidebarInfo = props => {
   const {
@@ -19,6 +20,7 @@ const SidebarInfo = props => {
     teams,
     facilities
   } = props.userData.current_profile;
+
   return (
     <aside className="profile-aside">
       <>
@@ -189,6 +191,46 @@ const SidebarInfo = props => {
             <div className="profile-info__item-value">{bats_hand}</div>
           </li>
         </ul>
+        <div>
+          {school && (
+            <>
+              <p className={classes.Heading}>School</p>
+              <p className={classes.TextBox}>{school.name}</p>
+            </>
+          )}
+          {school_year && (
+            <>
+              <p className={classes.Heading}>School Year</p>
+              <p className={classes.TextBox}>{school_year}</p>
+            </>
+          )}
+          {teams.length > 0 && (
+            <>
+              <p className={classes.Heading}>Team</p>
+              {teams.map(team => (
+                <p key={team.id} className={classes.TextBox}>
+                  {team.name}
+                </p>
+              ))}
+            </>
+          )}
+          {facilities.length > 0 && (
+            <>
+              <p className={classes.Heading}>Facility</p>
+              {facilities.map(facility => (
+                <p key={facility.id} className={classes.TextBox}>
+                  {facility.u_name}
+                </p>
+              ))}
+            </>
+          )}
+          {biography && (
+            <>
+              <h2>About</h2>
+              <p>{biography}</p>
+            </>
+          )}
+        </div>
       </>
     </aside>
   );
