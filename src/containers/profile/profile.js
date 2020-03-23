@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SidebarForm from "../../components/sidebar/sidebarForm/sidebarForm";
 import SidebarInfo from "../../components/sidebar/sidebarInfo/sidebarInfo";
-import ProfileTable from "../../components/profile/profileTable/profileTable";
+import ProfileTable from "../../components/profile/profileTable";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   GET_CURRENT_PROFILE,

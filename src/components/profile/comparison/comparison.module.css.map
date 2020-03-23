@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,QAAQ,EAAE,QAAQ;CACnB;;AAED,AAAA,SAAS,CAAC;EACR,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,KAAK;EACd,GAAG,EAAE,IAAI;EACT,aAAa,EAAE,GAAG;EAClB,gBAAgB,EAAE,OAAO;EACzB,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,mBAAmB;EAC3C,MAAM,EAAE,iBAAiB;EACzB,OAAO,EAAE,GAAG;EACZ,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,QAAQ,AAAA,MAAM,CAAC;EACb,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,OAAO;CAChB",
     "sources": [
-        "profileTable.module.scss"
+        "comparison.module.scss"
     ],
     "names": [],
-    "file": "profileTable.module.css"
+    "file": "comparison.module.css"
 }
