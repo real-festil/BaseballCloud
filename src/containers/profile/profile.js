@@ -22,17 +22,26 @@ const Profile = props => {
 
   const onSubmitForm = values => {
     console.log(values);
+    const teams = values.teams.map(team => {
+      return { id: team.id, name: team.name };
+    });
+    const facilities = values.facilities.map(facility => {
+      return { id: facility.id, email: facility.name };
+    });
     const updatedValues = {
       ...values,
       throws_hand: values.throws_hand.value,
       bats_hand: values.bats_hand.value,
-      position: values.position.value,
-      position2: values.position2.value,
+      position: values.position.name,
+      position2: values.position2.name,
       age: parseInt(values.age),
+      school_year: values.school_year.name,
       feet: parseInt(values.feet),
       inches: parseInt(values.inches || 0),
       weight: parseInt(values.weight),
-      // school: {name: values.school.name},
+      school: { id: values.school.id, name: values.school.name },
+      teams,
+      facilities,
       id: data.current_profile.id
     };
     delete updatedValues["__typename"];

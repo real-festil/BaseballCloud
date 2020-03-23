@@ -33,6 +33,8 @@ const SelectComponent = props => {
         isSearchable={false}
         name={input.name}
         options={options}
+        getOptionValue={option => option["id"]}
+        getOptionLabel={option => option["name"]}
         isMulti={isMulti}
         onChange={input.onChange}
         placeholder={placeholder}

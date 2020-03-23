@@ -7,26 +7,26 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_FACILITIES, GET_SCHOOLS, GET_TEAMS } from "../../../utils/queries";
 
 const positionOptions = [
-  { value: "Catcher", label: "Catcher" },
-  { value: "FirstBase", label: "First Base" },
-  { value: "SecondBase", label: "Second Base" },
-  { value: "Shortstop", label: "Shortstop" },
-  { value: "ThirdBase", label: "Third Base" },
-  { value: "Outfield", label: "Outfield" },
-  { value: "Pitcher", label: "Pitcher" }
+  { id: "Catcher", name: "Catcher" },
+  { id: "FirstBase", name: "First Base" },
+  { id: "SecondBase", name: "Second Base" },
+  { id: "Shortstop", name: "Shortstop" },
+  { id: "ThirdBase", name: "Third Base" },
+  { id: "Outfield", name: "Outfield" },
+  { id: "Pitcher", name: "Pitcher" }
 ];
 
 const handOptions = [
-  { value: "R", label: "R" },
-  { value: "L", label: "L" }
+  { id: "R", name: "R" },
+  { id: "L", name: "L" }
 ];
 
 const schoolYearOptions = [
-  { value: "Freshman", label: "Freshman" },
-  { value: "Sophomore", label: "Sophomore" },
-  { value: "Junior", label: "Junior" },
-  { value: "Senior", label: "Senior" },
-  { value: "None", label: "None" }
+  { id: "Freshman", name: "Freshman" },
+  { id: "Sophomore", name: "Sophomore" },
+  { id: "Junior", name: "Junior" },
+  { id: "Senior", name: "Senior" },
+  { id: "None", name: "None" }
 ];
 
 const errorStyle = {
@@ -48,22 +48,27 @@ const SidebarForm = props => {
   const facilitiesOptions = !facilities.loading
     ? facilities.data.facilities.facilities.map(facility => {
         return {
-          value: facility.u_name,
-          label: facility.u_name,
-          id: facility.id
+          id: facility.id,
+          name: facility.u_name
         };
       })
     : null;
 
+  const initialFacilities = props.initialData.facilities.map(facility => {
+    return {
+      id: facility.id,
+      name: facility.u_name
+    };
+  });
   const schoolsOptions = !schools.loading
     ? schools.data.schools.schools.map(schools => {
-        return { value: schools.name, label: schools.name };
+        return { id: schools.id, name: schools.name };
       })
     : null;
 
   const teamsOptions = !teams.loading
     ? teams.data.teams.teams.map(teams => {
-        return { value: teams.name, label: teams.name };
+        return { id: teams.id, name: teams.name };
       })
     : null;
 
@@ -77,21 +82,22 @@ const SidebarForm = props => {
           {
             ...props.initialData,
             position: {
-              value: props.initialData.position,
-              label: props.initialData.position
+              id: props.initialData.position,
+              name: props.initialData.position
             },
             position2: {
-              value: props.initialData.position2,
-              label: props.initialData.position2
+              id: props.initialData.position2,
+              name: props.initialData.position2
             },
             bats_hand: {
-              value: props.initialData.bats_hand,
-              label: props.initialData.bats_hand
+              id: props.initialData.bats_hand,
+              name: props.initialData.bats_hand
             },
             throws_hand: {
-              value: props.initialData.throws_hand,
-              label: props.initialData.throws_hand
-            }
+              id: props.initialData.throws_hand,
+              name: props.initialData.throws_hand
+            },
+            facilities: initialFacilities
           } || {
             feet: null,
             inches: 0,
@@ -104,7 +110,7 @@ const SidebarForm = props => {
             last_name: null,
             bats_hand: null,
             throws_hand: null,
-            school: null,
+            schools: null,
             teams: [],
             facilities: []
           }
@@ -259,19 +265,19 @@ const SidebarForm = props => {
             />
             <h2>School</h2>
             <Field
-              name="school"
+              name="schools"
               component={Select}
               options={schoolsOptions}
               placeholder="FSU"
             />
             <Field
-              name="schoolYear"
+              name="school_year"
               component={Select}
               options={schoolYearOptions}
               placeholder="School Year"
             />
             <Field
-              name="team"
+              name="teams"
               component={Select}
               isMulti={true}
               options={teamsOptions}
