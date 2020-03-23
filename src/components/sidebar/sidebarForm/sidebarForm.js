@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Field } from "react-final-form";
 import Select from "../../selectComponent/selectComponent";
 import classes from "./sidebarForm.module.css";

@@ -1,0 +1,24 @@
+.DropdownWrapper {
+  position: absolute;
+}
+
+.Dropdown {
+  position: relative;
+  margin-top: 12px;
+  padding: 8px 0;
+  top: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  border: solid 1px #ebebeb;
+  z-index: 100;
+  display: block;
+  width: 250%;
+}
+
+.Profile:hover {
+  background-color: #ecf8ff;
+  cursor: pointer;
+}
+/*# sourceMappingURL=profileTable.module.css.map */
