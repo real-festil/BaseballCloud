@@ -89,14 +89,8 @@ const RegisterForm = props => {
           </Field>
           <p className="modal-signUp__desc">
             By clicking Sign Up, you agree to our{" "}
-            <a href="#" className="page-link">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="page-link">
-              Privacy Policy
-            </a>
-            .
+            <p className="page-link">Terms of Service</p> and{" "}
+            <p className="page-link">Privacy Policy</p>.
           </p>
           <button type="submit" className="modal-submit">
             Sign Up

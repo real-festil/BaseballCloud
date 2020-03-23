@@ -64,9 +64,7 @@ class Login extends React.Component {
           )}
         />
 
-        <a href="#" className="modal-signIn__help-link page-link">
-          Forgotten password?
-        </a>
+        <p className="modal-signIn__help-link page-link">Forgotten password?</p>
         <p className="modal-signIn__desc">
           Dont have an account?
           <Link to="/registration" className="modal-signIn__signUp-link">

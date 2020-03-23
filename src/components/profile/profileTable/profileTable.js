@@ -49,19 +49,14 @@ const ProfileTable = props => {
   return (
     <section className="profile-table">
       <div className="profile-table__toggle-wrap">
-        <a href="#" className="profile-table__toggle">
+        <p className="profile-table__toggle">
           Pitching
           <div className="profile-table__toggle-dropdown"></div>
-        </a>
-        <a href="#" className="profile-table__toggle">
-          Session Reports
-        </a>
-        <a
-          href="#"
-          className="profile-table__toggle  profile-table__toggle--active"
-        >
+        </p>
+        <p className="profile-table__toggle">Session Reports</p>
+        <p className="profile-table__toggle  profile-table__toggle--active">
           Comparison
-        </a>
+        </p>
       </div>
 
       <ul className="profile-table__tab-wrap">
@@ -84,9 +79,9 @@ const ProfileTable = props => {
                   alt="userpic"
                   className="profile-table__current-img"
                 />
-                <a href="#" className="profile-table__current-name">
+                <p className="profile-table__current-name">
                   {first_name + " " + last_name}
-                </a>
+                </p>
               </div>
               <div className="profile-table__select-player">
                 <img
@@ -121,19 +116,22 @@ const ProfileTable = props => {
                     </svg>
                   </span>
                   <div className={classes.DropdownWrapper}>
-                    {!loading && data && searchInput && isDropdownShow && (
-                      <div className={classes.Dropdown}>
-                        {data.profile_names.profile_names.map(profile => (
-                          <p
-                            key={profile.id}
-                            className={classes.Profile}
-                            onClick={() => onSelectProfile(profile.id)}
-                          >
-                            {profile.first_name} {profile.last_name}
-                          </p>
-                        ))}
-                      </div>
-                    )}
+                    {!loading &&
+                      data &&
+                      searchInput.length > 1 &&
+                      isDropdownShow && (
+                        <div className={classes.Dropdown}>
+                          {data.profile_names.profile_names.map(profile => (
+                            <p
+                              key={profile.id}
+                              className={classes.Profile}
+                              onClick={() => onSelectProfile(profile.id)}
+                            >
+                              {profile.first_name} {profile.last_name}
+                            </p>
+                          ))}
+                        </div>
+                      )}
                   </div>
                 </div>
               </div>

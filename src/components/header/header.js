@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 const Header = props => {
   const [isNavOpen, toggleNav] = useState(false);
-  const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
+  const { loading, data } = useQuery(GET_CURRENT_PROFILE);
 
   return (
     <header className="page-header">
@@ -14,14 +14,10 @@ const Header = props => {
         <nav className="page-header--nav main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <a href="#" className="main-nav__link">
-                Leaderboards
-              </a>
+              <p className="main-nav__link">Leaderboards</p>
             </li>
             <li className="main-nav__item">
-              <a href="#" className="main-nav__link">
-                Network
-              </a>
+              <p className="main-nav__link">Network</p>
             </li>
             <li className="main-nav__item main-nav__item--user">
               <i
@@ -41,12 +37,8 @@ const Header = props => {
               </p>
               {isNavOpen && (
                 <div className="main-nav__dropdown">
-                  <a href="#" className="main-nav__dropdown-link">
-                    My Profile
-                  </a>
-                  <a href="#" className="main-nav__dropdown-link">
-                    Log Out
-                  </a>
+                  <p className="main-nav__dropdown-link">My Profile</p>
+                  <p className="main-nav__dropdown-link">Log Out</p>
                 </div>
               )}
             </li>
