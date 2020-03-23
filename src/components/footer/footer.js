@@ -4,14 +4,38 @@ const Footer = () => (
   <footer className="page-footer">
     <div className="page-footer__copyrights-block">
       <span className="page-footer__copyright">© 2018 BaseballCloud</span>
-      <p className="page-footer__link page-link">Terms of Service</p>
-      <p className="page-footer__link page-link">Privacy Policy</p>
+      <a href="/" className="page-footer__link page-link">
+        Terms of Service
+      </a>
+      <a href="/" className="page-footer__link page-link">
+        Privacy Policy
+      </a>
     </div>
     <div className="page-footer__social-block">
-      <p className="page-footer__link page-link">Blog</p>
-      <p className="page-footer__link page-link">Twitter</p>
-      <p className="page-footer__link page-link">Instagram</p>
-      <p className="page-footer__link page-link">Facebook</p>
+      <a
+        href="https://baseballcloud.blog"
+        className="page-footer__link page-link"
+      >
+        Blog
+      </a>
+      <a
+        href="http://twitter.com/baseballcloudus"
+        className="page-footer__link page-link"
+      >
+        Twitter
+      </a>
+      <a
+        href="http://www.instagram.com/baseballcloudus/"
+        className="page-footer__link page-link"
+      >
+        Instagram
+      </a>
+      <a
+        href="http://www.facebook.com/BaseballCloudUS/"
+        className="page-footer__link page-link"
+      >
+        Facebook
+      </a>
     </div>
   </footer>
 );
