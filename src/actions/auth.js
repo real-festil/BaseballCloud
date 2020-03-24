@@ -25,7 +25,6 @@ export const register = ({
       role
     });
     dispatch(registerSuccess(res));
-    console.log(res);
     history.push("/profile");
   } catch (e) {
     dispatch(
@@ -42,6 +41,9 @@ export const login = ({ email, password }) => async dispatch => {
       password
     });
     dispatch(loginSuccess(res));
+    localStorage.setItem("access-token", res.headers["access-token"]);
+    localStorage.setItem("client", res.headers["client"]);
+    localStorage.setItem("uid", res.headers["uid"]);
     history.push("/profile");
   } catch (e) {
     dispatch(loginFailure({ error: e.response.data.errors[0] }));

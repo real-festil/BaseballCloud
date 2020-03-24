@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import HeaderLogo from "../icons/headerLogo";
 import { GET_CURRENT_PROFILE } from "../../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const [isNavOpen, toggleNav] = useState(false);
@@ -14,7 +15,9 @@ const Header = props => {
         <nav className="page-header--nav main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <p className="main-nav__link">Leaderboards</p>
+              <Link to="/leaderboard" className="main-nav__link">
+                Leaderboards
+              </Link>
             </li>
             <li className="main-nav__item">
               <p className="main-nav__link">Network</p>
@@ -37,7 +40,9 @@ const Header = props => {
               </p>
               {isNavOpen && (
                 <div className="main-nav__dropdown">
-                  <p className="main-nav__dropdown-link">My Profile</p>
+                  <Link to="/profile" className="main-nav__dropdown-link">
+                    My Profile
+                  </Link>
                   <p className="main-nav__dropdown-link">Log Out</p>
                 </div>
               )}

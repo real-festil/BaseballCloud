@@ -1,0 +1,27 @@
+.DropdownWrapper {
+  position: absolute;
+}
+
+.Dropdown {
+  position: relative;
+  margin-top: 12px;
+  padding: 0;
+  top: 50px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  border: solid 1px #ebebeb;
+  z-index: 100;
+  display: block;
+  width: 115%;
+}
+
+.Dropdown p {
+  height: 100%;
+  padding: 10px 5px;
+}
+
+.Dropdown p:hover {
+  background-color: #ecf8ff;
+  cursor: pointer;
+}

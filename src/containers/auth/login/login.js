@@ -64,13 +64,15 @@ class Login extends React.Component {
           )}
         />
 
-        <p className="modal-signIn__help-link page-link">Forgotten password?</p>
-        <p className="modal-signIn__desc">
+        <a href="/" className="modal-signIn__help-link page-link">
+          Forgotten password?
+        </a>
+        <a href="/" className="modal-signIn__desc">
           Dont have an account?
           <Link to="/registration" className="modal-signIn__signUp-link">
             Sign Up
           </Link>
-        </p>
+        </a>
       </div>
     );
   }

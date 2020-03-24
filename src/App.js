@@ -3,6 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Auth from "./containers/auth/auth";
 import Profile from "./containers/profile/profile";
+import Leaderboard from "./containers/leaderboard/leaderboard";
 import { Router, Switch, Redirect, Route } from "react-router-dom";
 import history from "./utils/history";
 import ApolloWrapper from "./utils/Apollo";
@@ -33,6 +34,15 @@ function App(props) {
             {isAuth ? (
               <ApolloWrapper>
                 <Profile />
+              </ApolloWrapper>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/leaderboard">
+            {isAuth ? (
+              <ApolloWrapper>
+                <Leaderboard />
               </ApolloWrapper>
             ) : (
               <Redirect to="/login" />
