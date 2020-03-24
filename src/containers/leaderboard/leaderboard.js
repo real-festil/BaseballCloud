@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from "react";
 import LeaderboardItem from "../../components/leaderboardItem/leaderboardItem";
 import { useLazyQuery } from "@apollo/react-hooks";
-import { GET_LEADERBOARD_BATTING } from "../../utils/queries";
+import {
+  GET_LEADERBOARD_BATTING,
+  GET_LEADERBOARD_PITCHING
+} from "../../utils/queries";
 import classes from "./leaderboard.module.css";
 
 const Leaderboard = () => {
-  const [filter, toggleFilter] = useState("exit_velocity");
+  const [battingFilter, toggleBattingFilter] = useState("exit_velocity");
+  const [pitchingFilter, togglePitchingFilter] = useState("pitch_velocity");
+  const [tab, toggleTab] = useState("batting");
   const [isFilterShow, toggleFilterShow] = useState(false);
+
   const [getBattingData, battingData] = useLazyQuery(GET_LEADERBOARD_BATTING, {
-    variables: { input: { type: filter } }
+    variables: { input: { type: battingFilter } }
   });
 
+  const [getPitchingData, pitchingData] = useLazyQuery(
+    GET_LEADERBOARD_PITCHING,
+    {
+      variables: { input: { type: pitchingFilter } }
+    }
+  );
+
   useEffect(() => {
-    getBattingData(filter);
-  }, [filter, getBattingData]);
+    tab === "batting"
+      ? getBattingData(battingFilter)
+      : getPitchingData(pitchingFilter);
+  }, [battingFilter, getBattingData, getPitchingData, pitchingFilter, tab]);
 
   if (battingData.error) return `Error! ${battingData.error.message}`;
 
@@ -123,7 +138,6 @@ const Leaderboard = () => {
               placeholder="Age"
               min="6"
               max="30"
-              value=""
             />
             <span className="leaderboards__filter-icon">
               <svg
@@ -169,15 +183,26 @@ const Leaderboard = () => {
       <div className="leaderboards__table">
         <div className="leaderboards__table-sort">
           <div className="leaderboards__tabs">
-            <a
-              href="/"
-              className="leaderboards__tab-btn leaderboards__tab-btn--active"
+            <p
+              onClick={() => toggleTab("batting")}
+              className={
+                tab === "batting"
+                  ? "leaderboards__tab-btn leaderboards__tab-btn--active"
+                  : "leaderboards__tab-btn"
+              }
             >
               Batting
-            </a>
-            <a href="/" className="leaderboards__tab-btn">
+            </p>
+            <p
+              onClick={() => toggleTab("pitching")}
+              className={
+                tab === "pitching"
+                  ? "leaderboards__tab-btn leaderboards__tab-btn--active"
+                  : "leaderboards__tab-btn"
+              }
+            >
               Pitching
-            </a>
+            </p>
           </div>
 
           <div
@@ -187,7 +212,7 @@ const Leaderboard = () => {
             <div className="leaderboards__sort-dropdown">
               <div className="leaderboards__sort-value">
                 <span className="leaderboards__dropdown-value">
-                  {filter === "exit_velocity"
+                  {battingFilter === "exit_velocity"
                     ? "Exit velocity"
                     : "Carry distance"}
                 </span>
@@ -207,16 +232,26 @@ const Leaderboard = () => {
                 </svg>
               </span>
               <div className={classes.DropdownWrapper}>
-                {isFilterShow && (
-                  <div className={classes.Dropdown}>
-                    <p onClick={() => toggleFilter("exit_velocity")}>
-                      Exit velocity
-                    </p>
-                    <p onClick={() => toggleFilter("carry_distance")}>
-                      Carry distance
-                    </p>
-                  </div>
-                )}
+                {isFilterShow &&
+                  (tab === "batting" ? (
+                    <div className={classes.Dropdown}>
+                      <p onClick={() => toggleBattingFilter("exit_velocity")}>
+                        Exit velocity
+                      </p>
+                      <p onClick={() => toggleBattingFilter("carry_distance")}>
+                        Carry distance
+                      </p>
+                    </div>
+                  ) : (
+                    <div className={classes.Dropdown}>
+                      <p onClick={() => togglePitchingFilter("pitch_velocity")}>
+                        Pitch velocity
+                      </p>
+                      <p onClick={() => togglePitchingFilter("spin_rate")}>
+                        Spin rate
+                      </p>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -228,7 +263,7 @@ const Leaderboard = () => {
               Rank
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--batter">
-              Batter Name
+              {tab === "batting" ? "Batter Name" : "Pitcher Name"}
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--age">
               Age
@@ -240,13 +275,13 @@ const Leaderboard = () => {
               Teams
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--velocity">
-              Exit Velocity
+              {tab === "batting" ? "Exit velocity" : "Pitch type"}
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--angle">
-              Launch Angle
+              {tab === "batting" ? "Launch angle" : "Velocity"}
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--distance">
-              Distance
+              {tab === "batting" ? "Distance" : "Spin rate"}
             </div>
             <div className="leaderboards__table-col leaderboards__table-col--favorite">
               Favorite
@@ -255,7 +290,8 @@ const Leaderboard = () => {
           <div className="leaderboards__table-items">
             {!battingData.data || battingData.loading
               ? "Loading..."
-              : battingData.data.leaderboard_batting.leaderboard_batting.map(
+              : tab === "batting"
+              ? battingData.data.leaderboard_batting.leaderboard_batting.map(
                   (player, index) => {
                     const {
                       batter_name,
@@ -265,18 +301,50 @@ const Leaderboard = () => {
                       age,
                       school,
                       teams,
-                      favorite,
-                      batter_datraks_id
+                      favorite
                     } = player;
 
                     return (
                       <LeaderboardItem
                         key={index}
+                        tab={tab}
                         rank={index + 1}
                         batter_name={batter_name}
                         exit_velocity={exit_velocity}
                         launch_angle={launch_angle}
                         distance={distance}
+                        age={age}
+                        school={school}
+                        teams={teams}
+                        favorite={favorite}
+                      />
+                    );
+                  }
+                )
+              : !pitchingData.data || pitchingData.loading
+              ? "Loading..."
+              : pitchingData.data.leaderboard_pitching.leaderboard_pitching.map(
+                  (player, index) => {
+                    const {
+                      pitcher_name,
+                      pitch_type,
+                      velocity,
+                      spin_rate,
+                      age,
+                      school,
+                      teams,
+                      favorite
+                    } = player;
+
+                    return (
+                      <LeaderboardItem
+                        key={index}
+                        tab={tab}
+                        rank={index + 1}
+                        batter_name={pitcher_name}
+                        exit_velocity={pitch_type}
+                        launch_angle={velocity}
+                        distance={spin_rate}
                         age={age}
                         school={school}
                         teams={teams}
