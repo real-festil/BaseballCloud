@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC;EACN,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;CACb;;AAED,AAAA,eAAe,CAAC;EACd,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "leaderboardSearch.module.scss"
+    ],
+    "names": [],
+    "file": "leaderboardSearch.module.css"
+}

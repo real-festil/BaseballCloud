@@ -3,7 +3,13 @@ import classes from "./leaderboardFilter.module.css";
 
 const LeaderboardFilter = props => {
   const [isFilterShow, filterToggle] = useState("false");
-  const { battingFilter } = props;
+  const {
+    battingFilter,
+    pitchingFilter,
+    togglePitchingFilter,
+    toggleBattingFilter,
+    tab
+  } = props;
 
   return (
     <div
@@ -13,9 +19,13 @@ const LeaderboardFilter = props => {
       <div className="leaderboards__sort-dropdown">
         <div className="leaderboards__sort-value">
           <span className="leaderboards__dropdown-value">
-            {battingFilter === "exit_velocity"
-              ? "Exit velocity"
-              : "Carry distance"}
+            {tab === "batting"
+              ? battingFilter === "exit_velocity"
+                ? "Exit velocity"
+                : "Carry distance"
+              : pitchingFilter === "pitch_velocity"
+              ? "Pitch velocity"
+              : "Spin rate"}
           </span>
         </div>
         <span className="leaderboards__sort-icon">
@@ -33,22 +43,22 @@ const LeaderboardFilter = props => {
           </svg>
         </span>
         <div className={classes.DropdownWrapper}>
-          {isFilterShow &&
-            (props.tab === "batting" ? (
+          {!isFilterShow &&
+            (tab === "batting" ? (
               <div className={classes.Dropdown}>
-                <p onClick={() => props.toggleBattingFilter("exit_velocity")}>
+                <p onClick={() => toggleBattingFilter("exit_velocity")}>
                   Exit velocity
                 </p>
-                <p onClick={() => props.toggleBattingFilter("carry_distance")}>
+                <p onClick={() => toggleBattingFilter("carry_distance")}>
                   Carry distance
                 </p>
               </div>
             ) : (
               <div className={classes.Dropdown}>
-                <p onClick={() => props.togglePitchingFilter("pitch_velocity")}>
+                <p onClick={() => togglePitchingFilter("pitch_velocity")}>
                   Pitch velocity
                 </p>
-                <p onClick={() => props.togglePitchingFilter("spin_rate")}>
+                <p onClick={() => togglePitchingFilter("spin_rate")}>
                   Spin rate
                 </p>
               </div>
