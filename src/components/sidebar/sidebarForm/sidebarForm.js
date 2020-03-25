@@ -34,6 +34,35 @@ const errorStyle = {
   paddingBottom: "10px"
 };
 
+const required = value => (value ? undefined : "Required");
+
+const ageValidate = value => {
+  if (!value) return "Required";
+  if (value > 30 || value < 0) return "Must not be older than 30";
+};
+
+const feetValidate = value => {
+  if (!value) return "Required";
+  if (value > 7) {
+    return "Maximum height is 7";
+  }
+  if (value < 4) {
+    return "Minimal height is 4";
+  }
+};
+
+const inchesValidate = value => {
+  if (value < 0 || value > 11) {
+    return "Inches can be from 0 to 11";
+  }
+};
+
+const weightValidate = value => {
+  if (value < 50 || value > 350) {
+    return "Weight can be from 50 to 350";
+  }
+};
+
 const SidebarForm = props => {
   const facilities = useQuery(GET_FACILITIES, {
     variables: { search: "" }
@@ -60,6 +89,7 @@ const SidebarForm = props => {
       name: facility.u_name
     };
   });
+
   const schoolsOptions = !schools.loading
     ? schools.data.schools.schools.map(schools => {
         return { id: schools.id, name: schools.name };
@@ -72,104 +102,57 @@ const SidebarForm = props => {
       })
     : null;
 
+  const initialValues = {
+    ...props.initialData,
+    position: {
+      id: props.initialData.position,
+      name: props.initialData.position
+    },
+    position2: {
+      id: props.initialData.position2,
+      name: props.initialData.position2
+    },
+    bats_hand: {
+      id: props.initialData.bats_hand,
+      name: props.initialData.bats_hand
+    },
+    throws_hand: {
+      id: props.initialData.throws_hand,
+      name: props.initialData.throws_hand
+    },
+    school_year: {
+      id: props.initialData.school_year,
+      name: props.initialData.school_year
+    },
+    facilities: initialFacilities
+  } || {
+    feet: null,
+    inches: 0,
+    weight: 50,
+    age: null,
+    biography: "",
+    position: null,
+    position2: null,
+    first_name: null,
+    last_name: null,
+    bats_hand: null,
+    throws_hand: null,
+    school: null,
+    teams: [],
+    facilities: []
+  };
+
   return (
     <aside className="profile-aside">
       <div className={classes.ProfileImage}>
         <img src={userPic} alt="" />
       </div>
       <Form
-        initialValues={
-          {
-            ...props.initialData,
-            position: {
-              id: props.initialData.position,
-              name: props.initialData.position
-            },
-            position2: {
-              id: props.initialData.position2,
-              name: props.initialData.position2
-            },
-            bats_hand: {
-              id: props.initialData.bats_hand,
-              name: props.initialData.bats_hand
-            },
-            throws_hand: {
-              id: props.initialData.throws_hand,
-              name: props.initialData.throws_hand
-            },
-            school_year: {
-              id: props.initialData.school_year,
-              name: props.initialData.school_year
-            },
-            facilities: initialFacilities
-          } || {
-            feet: null,
-            inches: 0,
-            weight: 50,
-            age: null,
-            biography: "",
-            position: null,
-            position2: null,
-            first_name: null,
-            last_name: null,
-            bats_hand: null,
-            throws_hand: null,
-            school: null,
-            teams: [],
-            facilities: []
-          }
-        }
+        initialValues={initialValues}
         onSubmit={values => props.onSubmit(values)}
-        validate={values => {
-          const errors = {};
-
-          if (!values.first_name) {
-            errors.first_name = "Required";
-          }
-          if (!values.last_name) {
-            errors.last_name = "Required";
-          }
-          if (!values.position) {
-            errors.position = "Required";
-          }
-          if (!values.age) {
-            errors.age = "Required";
-          }
-          if (!values.feet) {
-            errors.feet = "Required";
-          }
-          if (!values.weight) {
-            errors.weight = "Required";
-          }
-          if (!values.throws_hand) {
-            errors.throws_hand = "Required";
-          }
-          if (!values.bats_hand) {
-            errors.bats_hand = "Required";
-          }
-          if (values.age > 30) {
-            errors.age = "Must not be older than 30";
-          }
-          if (values.age < 0) {
-            errors.age = "Must be older than 0";
-          }
-          if (values.feet > 7) {
-            errors.feet = "Maximum height is 7";
-          }
-          if (values.feet < 4) {
-            errors.feet = "Minimal height is 4";
-          }
-          if (values.inches < 0 || values.inches > 11) {
-            errors.inches = "Inches can be from 0 to 11";
-          }
-          if (values.weight < 50 || values.weight > 350) {
-            errors.weight = "Weight can be from 50 to 350";
-          }
-          return errors;
-        }}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className={classes.SidebarForm}>
-            <Field name="first_name">
+            <Field name="first_name" validate={required}>
               {({ input, meta }) => (
                 <>
                   <input
@@ -183,7 +166,7 @@ const SidebarForm = props => {
                 </>
               )}
             </Field>
-            <Field name="last_name">
+            <Field name="last_name" validate={required}>
               {({ input, meta }) => (
                 <>
                   <input
@@ -202,6 +185,7 @@ const SidebarForm = props => {
               component={Select}
               options={positionOptions}
               placeholder="Position in game *"
+              validate={required}
             />
             <Field
               name="position2"
@@ -210,7 +194,7 @@ const SidebarForm = props => {
               placeholder="Secondary position in game"
             />
             <h2>Personal info</h2>
-            <Field name="age">
+            <Field name="age" validate={ageValidate}>
               {({ input, meta }) => (
                 <>
                   <input
@@ -225,7 +209,7 @@ const SidebarForm = props => {
                 </>
               )}
             </Field>
-            <Field name="feet">
+            <Field name="feet" validate={feetValidate}>
               {({ input, meta }) => (
                 <>
                   <input {...input} name="Feet" placeholder="Feet *" />
@@ -235,7 +219,7 @@ const SidebarForm = props => {
                 </>
               )}
             </Field>
-            <Field name="inches">
+            <Field name="inches" validate={inchesValidate}>
               {({ input, meta }) => (
                 <>
                   <input {...input} name="Inches" placeholder="Inches" />
@@ -245,7 +229,7 @@ const SidebarForm = props => {
                 </>
               )}
             </Field>
-            <Field name="weight">
+            <Field name="weight" validate={weightValidate}>
               {({ input, meta }) => (
                 <>
                   <input {...input} name="Weight" placeholder="Weight *" />
@@ -258,12 +242,14 @@ const SidebarForm = props => {
             <Field
               name="throws_hand"
               component={Select}
+              validate={required}
               options={handOptions}
               placeholder="Throws *"
             />
             <Field
               name="bats_hand"
               component={Select}
+              validate={required}
               options={handOptions}
               placeholder="Bats *"
             />

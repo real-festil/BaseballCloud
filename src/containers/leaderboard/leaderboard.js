@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LeaderboardTable from "../../components/leaderboard/leaderboardTable/leaderboardTable";
-import LeaderboardSearch from "../../components/leaderboard/leaderboardSearch/leaderboardSearch";
+import LeaderboardFilters from "../../components/leaderboard/leaderboardFilters/leaderboardFilters";
 import { useLazyQuery } from "@apollo/react-hooks";
 import {
   GET_LEADERBOARD_BATTING,
@@ -49,7 +49,7 @@ const Leaderboard = () => {
         <h1 className="leaderboards__title">Leaderboards</h1>
 
         <div className="leaderboards__filter-list">
-          <LeaderboardSearch
+          <LeaderboardFilters
             tab={tab}
             changeFiltersHandler={filter => changeFiltersHandler(filter)}
           />

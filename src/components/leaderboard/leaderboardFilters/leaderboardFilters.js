@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import classes from "./leaderboardSearch.module.css";
 
-const LeaderboardSearch = props => {
+const LeaderboardFilters = props => {
   const { tab } = props;
 
   const [filters, changeFilters] = useState({});
@@ -156,4 +155,4 @@ const LeaderboardSearch = props => {
   );
 };
 
-export default LeaderboardSearch;
+export default LeaderboardFilters;
