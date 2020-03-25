@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import userPic from "../../../styles/img/userpic.png";
 import { GET_PROFILE, GET_PROFILE_BY_ID } from "../../../utils/queries";
 import { useLazyQuery } from "@apollo/react-hooks";
-import classes from "./comparison.module.css";
+import ComparisonDropdown from "./comparisonDropdown/comparisonDropdown";
+import ComparisonTable from "./comparisonTable/comparisonTable";
 
 const ProfileTable = props => {
   const [searchInput, searchInputChange] = useState("");
@@ -48,14 +49,6 @@ const ProfileTable = props => {
 
   return (
     <ul className="profile-table__tab-wrap">
-      <li className="profile-table__tab profile-table__tab--pitching hide">
-        There's no info yet
-      </li>
-
-      <li className="profile-table__tab profile-table__tab--session hide">
-        The player haven't had any sessions yet!
-      </li>
-
       <li className="profile-table__tab profile-table__tab--comparison">
         <div className="profile-table__players-table">
           <div className="profile-table__names">
@@ -103,28 +96,16 @@ const ProfileTable = props => {
                     ></path>
                   </svg>
                 </span>
-                <div className={classes.DropdownWrapper}>
-                  {!loading &&
-                    data &&
-                    searchInput.length > 1 &&
-                    isDropdownShow && (
-                      <div className={classes.Dropdown}>
-                        {data.profile_names.profile_names.map(profile => (
-                          <p
-                            key={profile.id}
-                            className={classes.Profile}
-                            onClick={() => onSelectProfile(profile.id)}
-                          >
-                            {profile.first_name} {profile.last_name}
-                          </p>
-                        ))}
-                      </div>
-                    )}
-                </div>
+                <ComparisonDropdown
+                  loading={loading}
+                  data={data}
+                  searchInput={searchInput}
+                  isDropdownShow={isDropdownShow}
+                  onSelectProfile={onSelectProfile}
+                />
               </div>
             </div>
           </div>
-
           <div className="profile-table__info-table">
             <div className="profile-table__info-row">
               <div className="profile-table__info-col">Age: {age}</div>
@@ -156,59 +137,7 @@ const ProfileTable = props => {
               </div>
             </div>
           </div>
-
-          <div className="profile-table__values">
-            <div className="profile-table__sorting">
-              <button className="profile-table__sorting-btn">
-                Top Pitching Values - <span className="js-value">Velocity</span>
-                <span className="profile-table__sorting-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="9"
-                    viewBox="0 0 16 9"
-                  >
-                    <path
-                      fill="#48BBFF"
-                      fillRule="nonzero"
-                      d="M13.469.432a1.081 1.081 0 0 1 1.565 0 1.165 1.165 0 0 1 0 1.615L8.78 8.43a1.083 1.083 0 0 1-1.567 0L.962 2.047a1.168 1.168 0 0 1 0-1.615 1.081 1.081 0 0 1 1.564 0L8 5.667 13.469.432z"
-                    ></path>
-                  </svg>
-                </span>
-              </button>
-            </div>
-
-            <div className="profile-table__values-table">
-              <div className="profile-table__values-row">
-                <div className="profile-table__values-col profile-table__values-col--name">
-                  Fastball
-                </div>
-                <div className="profile-table__values-col">-</div>
-                <div className="profile-table__values-col">-</div>
-              </div>
-              <div className="profile-table__values-row">
-                <div className="profile-table__values-col profile-table__values-col--name">
-                  Curveball
-                </div>
-                <div className="profile-table__values-col">-</div>
-                <div className="profile-table__values-col">-</div>
-              </div>
-              <div className="profile-table__values-row">
-                <div className="profile-table__values-col profile-table__values-col--name">
-                  Changeup
-                </div>
-                <div className="profile-table__values-col">-</div>
-                <div className="profile-table__values-col">-</div>
-              </div>
-              <div className="profile-table__values-row">
-                <div className="profile-table__values-col profile-table__values-col--name">
-                  Slider
-                </div>
-                <div className="profile-table__values-col">-</div>
-                <div className="profile-table__values-col">-</div>
-              </div>
-            </div>
-          </div>
+          <ComparisonTable />
         </div>
       </li>
     </ul>

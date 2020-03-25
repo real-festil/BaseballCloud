@@ -4,31 +4,31 @@ import PropTypes from "prop-types";
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+const emailValidate = value => {
+  if (!value) return "Required";
+  if (!emailRegex.test(value)) return "Invalid email address";
+};
+
+const passwordValidate = value => {
+  if (!value) return "Required";
+  if (value < 8) return "Must contain more than 8 characters";
+};
+
+const confirmPasswordValidate = values => {
+  const errors = {};
+  if (values.password !== values.confirm_password)
+    errors.confirm_password = "Passwords are not equal";
+  return errors;
+};
+
 const RegisterForm = props => {
   return (
     <Form
       onSubmit={values => props.onSubmit(values)}
-      validate={values => {
-        const errors = {};
-
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (!emailRegex.test(values.email)) {
-          errors.email = "Invalid email address";
-        }
-        if (!values.password) {
-          errors.password = "Required";
-        } else if (values.password.length < 8) {
-          errors.password = "Must contain more than 8 characters";
-        }
-        if (values.password !== values.confirm_password)
-          errors.confirm_password = "Passwords are not equal";
-
-        return errors;
-      }}
+      validate={values => confirmPasswordValidate(values)}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className="modal-signUp__form">
-          <Field name="email">
+          <Field name="email" validate={emailValidate}>
             {({ input, meta }) => (
               <>
                 <div className="modal-signUp__input-wrap input-wrap">
@@ -41,15 +41,15 @@ const RegisterForm = props => {
                   />
                 </div>
                 {meta.modified && meta.error && (
-                  <p style={errorStyle}>{meta.error}</p>
+                  <p className="error_text">{meta.error}</p>
                 )}
                 {meta.modified && props.error && (
-                  <p style={errorStyle}>{props.error}</p>
+                  <p className="error_text">{props.error}</p>
                 )}
               </>
             )}
           </Field>
-          <Field name="password">
+          <Field name="password" validate={passwordValidate}>
             {({ input, meta }) => (
               <>
                 <div className="modal-signUp__input-wrap input-wrap">
@@ -64,7 +64,7 @@ const RegisterForm = props => {
                   />
                 </div>
                 {meta.modified && meta.error && (
-                  <p style={errorStyle}>{meta.error}</p>
+                  <p className="error_text">{meta.error}</p>
                 )}
               </>
             )}
@@ -82,7 +82,7 @@ const RegisterForm = props => {
                   />
                 </div>
                 {meta.touched && meta.error && (
-                  <p style={errorStyle}>{meta.error}</p>
+                  <p className="error_text">{meta.error}</p>
                 )}
               </>
             )}
@@ -110,11 +110,6 @@ const RegisterForm = props => {
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func,
   error: PropTypes.string
-};
-
-const errorStyle = {
-  color: "red",
-  paddingBottom: "10px"
 };
 
 export default RegisterForm;

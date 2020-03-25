@@ -1,25 +1,6 @@
 import React from "react";
 import Select from "react-select";
 
-const selectStyles = {
-  container: provided => ({
-    ...provided,
-    margin: 5,
-    width: "100%"
-  }),
-  control: provided => ({
-    ...provided,
-    background: "#eff1f3",
-    border: "none",
-    height: 40
-  }),
-  valueContainer: provided => ({
-    ...provided,
-    height: "100%"
-  }),
-  indicatorSeparator: () => ({})
-};
-
 const SelectComponent = props => {
   const { input, meta, options, isMulti, placeholder, ...rest } = props;
 
@@ -28,7 +9,8 @@ const SelectComponent = props => {
       <Select
         {...input}
         {...rest}
-        styles={selectStyles}
+        className="react-select-form-container"
+        classNamePrefix="react-select-form"
         inputValue=""
         isSearchable={false}
         name={input.name}

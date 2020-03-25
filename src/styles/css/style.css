@@ -1381,4 +1381,28 @@ input {
   color: #48bbff !important;
 }
 
+.react-select-form-container {
+  margin: 5px;
+  width: 100%;
+}
+
+.react-select-form__control {
+  background-color: #eff1f3 !important;
+  border: none !important;
+  height: 40px;
+}
+
+.react-select-form__value-container {
+  height: 100%;
+}
+
+.react-select-form__indicator-separator {
+  display: none;
+}
+
+.error_text {
+  color: red;
+  padding-bottom: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

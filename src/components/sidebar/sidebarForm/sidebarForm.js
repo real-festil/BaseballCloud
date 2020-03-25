@@ -29,11 +29,6 @@ const schoolYearOptions = [
   { id: "None", name: "None" }
 ];
 
-const errorStyle = {
-  color: "red",
-  paddingBottom: "10px"
-};
-
 const required = value => (value ? undefined : "Required");
 
 const ageValidate = value => {
@@ -161,7 +156,7 @@ const SidebarForm = props => {
                     placeholder="First Name *"
                   />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
@@ -175,7 +170,7 @@ const SidebarForm = props => {
                     placeholder="Last Name *"
                   />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
@@ -204,7 +199,7 @@ const SidebarForm = props => {
                     type="number"
                   />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
@@ -214,7 +209,7 @@ const SidebarForm = props => {
                 <>
                   <input {...input} name="Feet" placeholder="Feet *" />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
@@ -224,7 +219,7 @@ const SidebarForm = props => {
                 <>
                   <input {...input} name="Inches" placeholder="Inches" />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
@@ -234,7 +229,7 @@ const SidebarForm = props => {
                 <>
                   <input {...input} name="Weight" placeholder="Weight *" />
                   {meta.touched && meta.error && (
-                    <p style={errorStyle}>{meta.error}</p>
+                    <p className="error_text">{meta.error}</p>
                   )}
                 </>
               )}
