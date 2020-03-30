@@ -625,7 +625,7 @@ input {
 .profile-table__sorting-btn {
   color: #48bbff;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 .profile-table__sorting-icon {
   display: flex;

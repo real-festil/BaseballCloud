@@ -1,58 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
+import Select from "react-select";
 
-const ComparisonTable = () => (
-  <div className="profile-table__values">
-    <div className="profile-table__sorting">
-      <button className="profile-table__sorting-btn">
-        Top Pitching Values - <span className="js-value">Velocity</span>
-        <span className="profile-table__sorting-icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="9"
-            viewBox="0 0 16 9"
-          >
-            <path
-              fill="#48BBFF"
-              fillRule="nonzero"
-              d="M13.469.432a1.081 1.081 0 0 1 1.565 0 1.165 1.165 0 0 1 0 1.615L8.78 8.43a1.083 1.083 0 0 1-1.567 0L.962 2.047a1.168 1.168 0 0 1 0-1.615 1.081 1.081 0 0 1 1.564 0L8 5.667 13.469.432z"
-            ></path>
-          </svg>
-        </span>
-      </button>
-    </div>
+const ComparisonTable = props => {
+  const { batting_top_values } = props.data;
+  const [type, changeType] = useState("exit_velocity");
 
-    <div className="profile-table__values-table">
-      <div className="profile-table__values-row">
-        <div className="profile-table__values-col profile-table__values-col--name">
-          Fastball
-        </div>
-        <div className="profile-table__values-col">-</div>
-        <div className="profile-table__values-col">-</div>
+  const getValue = name => {
+    if (batting_top_values) {
+      const result = batting_top_values.filter(
+        value => value.pitch_type === name
+      );
+
+      if (result.length) {
+        return result[0][type];
+      }
+    }
+  };
+
+  return (
+    <div className="profile-table__values">
+      <div className="profile-table__sorting">
+        <button className="profile-table__sorting-btn">
+          <p>Top Pitching Values - </p>
+          <Select
+            defaultValue={{ value: "exit_velocity", label: "Exit velocity" }}
+            className="react-select-container"
+            classNamePrefix="react-select"
+            options={[
+              { value: "distance", label: "Distance" },
+              { value: "launch_angle", label: "Launch angle" },
+              { value: "exit_velocity", label: "Exit velocity" }
+            ]}
+            onChange={value => changeType(value.value)}
+          />
+        </button>
       </div>
-      <div className="profile-table__values-row">
-        <div className="profile-table__values-col profile-table__values-col--name">
-          Curveball
+
+      <div className="profile-table__values-table">
+        <div className="profile-table__values-row">
+          <div className="profile-table__values-col profile-table__values-col--name">
+            Fastball
+          </div>
+          <div className="profile-table__values-col">
+            {getValue("Fastball")}
+          </div>
+          <div className="profile-table__values-col">-</div>
         </div>
-        <div className="profile-table__values-col">-</div>
-        <div className="profile-table__values-col">-</div>
-      </div>
-      <div className="profile-table__values-row">
-        <div className="profile-table__values-col profile-table__values-col--name">
-          Changeup
+        <div className="profile-table__values-row">
+          <div className="profile-table__values-col profile-table__values-col--name">
+            Curveball
+          </div>
+          <div className="profile-table__values-col">
+            {getValue("Curveball")}
+          </div>
+          <div className="profile-table__values-col">-</div>
         </div>
-        <div className="profile-table__values-col">-</div>
-        <div className="profile-table__values-col">-</div>
-      </div>
-      <div className="profile-table__values-row">
-        <div className="profile-table__values-col profile-table__values-col--name">
-          Slider
+        <div className="profile-table__values-row">
+          <div className="profile-table__values-col profile-table__values-col--name">
+            Changeup
+          </div>
+          <div className="profile-table__values-col">
+            {getValue("Changeup")}
+          </div>
+          <div className="profile-table__values-col">-</div>
         </div>
-        <div className="profile-table__values-col">-</div>
-        <div className="profile-table__values-col">-</div>
+        <div className="profile-table__values-row">
+          <div className="profile-table__values-col profile-table__values-col--name">
+            Slider
+          </div>
+          <div className="profile-table__values-col">{getValue("Slider")}</div>
+          <div className="profile-table__values-col">-</div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ComparisonTable;

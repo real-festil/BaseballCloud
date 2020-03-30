@@ -137,7 +137,7 @@ const ProfileTable = props => {
               </div>
             </div>
           </div>
-          <ComparisonTable />
+          <ComparisonTable data={props.data} />
         </div>
       </li>
     </ul>

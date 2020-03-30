@@ -7,15 +7,17 @@ import RecentSession from "../../components/profile/recentSession/recentSession"
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   GET_CURRENT_PROFILE,
+  GET_PROFILE_BY_ID,
   UPDATE_CURRENT_PROFILE
 } from "../../utils/queries";
 
 const Profile = props => {
   const [isSidebarFormOpened, toggleSidebarForm] = useState(true);
   const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
+  const profileById = useQuery(GET_PROFILE_BY_ID, {
+    variables: { id: props.match.params.id }
+  });
   const [updateProfile] = useMutation(UPDATE_CURRENT_PROFILE);
-
-  console.log(props.match.params.id);
 
   useEffect(() => {
     if (!loading)
@@ -72,15 +74,30 @@ const Profile = props => {
       ) : (
         <SidebarInfo
           onFormOpen={() => toggleSidebarForm(true)}
-          userData={loading ? null : data}
+          userData={
+            loading
+              ? null
+              : profileById.data
+              ? profileById.data.profile
+              : data.current_profile
+          }
+          id={props.match.params.id}
         />
       )}
       <main className="profile-main">
         <section className="profile-rates">
           <RecentSession />
-          <PitchingValues />
+          <PitchingValues
+            data={
+              (!loading && profileById.data && profileById.data.profile) || ""
+            }
+          />
         </section>
-        <ProfileTable data={data.current_profile} />
+        <ProfileTable
+          data={
+            profileById.data ? profileById.data.profile : data.current_profile
+          }
+        />
       </main>
     </div>
   );
