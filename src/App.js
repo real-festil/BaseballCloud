@@ -30,15 +30,19 @@ function App(props) {
           <Route exact path={"/(registration|login)/"}>
             {isAuth ? <Redirect to="/profile" /> : <Auth />}
           </Route>
-          <Route path="/profile">
-            {isAuth ? (
-              <ApolloWrapper>
-                <Profile />
-              </ApolloWrapper>
-            ) : (
-              <Redirect to="/login" />
-            )}
-          </Route>
+          <Route
+            exact
+            path={["/profile", "/profile/:id"]}
+            render={props => {
+              return isAuth ? (
+                <ApolloWrapper>
+                  <Profile {...props} />
+                </ApolloWrapper>
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          ></Route>
           <Route path="/leaderboard">
             {isAuth ? (
               <ApolloWrapper>

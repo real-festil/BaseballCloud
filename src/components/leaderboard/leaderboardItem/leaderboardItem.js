@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LeaderboardList = props => {
   const {
@@ -10,7 +11,8 @@ const LeaderboardList = props => {
     distance,
     school,
     teams,
-    favorite
+    favorite,
+    id
   } = props;
 
   return (
@@ -19,9 +21,12 @@ const LeaderboardList = props => {
         <div className="leaderboards__table-col leaderboards__table-col--rank">
           {rank}
         </div>
-        <div className="leaderboards__table-col leaderboards__table-col--batter">
+        <Link
+          to={`/profile/${id}`}
+          className="leaderboards__table-col leaderboards__table-col--batter"
+        >
           {batter_name}
-        </div>
+        </Link>
         <div className="leaderboards__table-col leaderboards__table-col--age">
           {age}
         </div>

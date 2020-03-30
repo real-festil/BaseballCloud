@@ -15,6 +15,8 @@ const Profile = props => {
   const { loading, error, data } = useQuery(GET_CURRENT_PROFILE);
   const [updateProfile] = useMutation(UPDATE_CURRENT_PROFILE);
 
+  console.log(props.match.params.id);
+
   useEffect(() => {
     if (!loading)
       if (data.current_profile.first_name) {

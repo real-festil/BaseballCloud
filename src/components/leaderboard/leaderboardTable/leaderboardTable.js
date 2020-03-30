@@ -49,7 +49,8 @@ const LeaderboardTable = props => {
                   age,
                   school,
                   teams,
-                  favorite
+                  favorite,
+                  batter_datraks_id
                 } = player;
 
                 return (
@@ -65,6 +66,7 @@ const LeaderboardTable = props => {
                     school={school}
                     teams={teams}
                     favorite={favorite}
+                    id={batter_datraks_id}
                   />
                 );
               }
@@ -81,7 +83,8 @@ const LeaderboardTable = props => {
                   age,
                   school,
                   teams,
-                  favorite
+                  favorite,
+                  pitcher_datraks_id
                 } = player;
 
                 return (
@@ -97,6 +100,7 @@ const LeaderboardTable = props => {
                     school={school}
                     teams={teams}
                     favorite={favorite}
+                    id={pitcher_datraks_id}
                   />
                 );
               }
